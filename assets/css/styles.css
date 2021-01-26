@@ -1,0 +1,36 @@
+.current { color: green; }
+
+/* To make sure body clears the menu bar */
+body { padding-top: 70px; }
+
+h1#title { border: 1px solid black; padding: 1rem 2rem 1rem 2rem; font-weight: bold; }
+
+#left { background-color: red; border: 1px solid black; padding: 0.5rem 1rem 0.5rem 1rem; height: 6rem; }
+
+#right { border: 1px solid black; padding: 0.5rem 1rem 0.5rem 1rem; min-height: 6rem; }
+
+h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 0.5rem 1rem; border: solid 1px grey; margin-bottom: 1rem; margin-top: 1rem; box-sizing: border-box; }
+
+.post-list-header { background-color: light-grey; padding: 0.75rem 1.25rem; margin-bottom: 0; border-bottom: 1px solid black; }
+
+.row { margin-left: -15px; margin-right: -15px; }
+
+.post-list-box { border: 1px solid black; margin-bottom: 1rem; }
+
+.post-list-intro { border-bottom: 1px solid black; padding: 1rem; }
+
+/* Bootstrap seems to add 1rem margin at bottom of .post-list */
+/* This counteracts it */
+.post-list-body { padding: 0.5rem 1rem 1rem 1rem; }
+
+.post-list-body .container .row { border: 1px solid red; }
+
+.post-list-body .title { font-weight: bold; margin-bottom: 0.5rem; margin-top: 0.5rem; }
+
+.post-list { border: 1px solid blue; margin-bottom: 0rem; margin-top: 0.5rem; }
+
+.content-table { border-collapse: collapse; width: 100%; margin-bottom: 1rem; font-size: 1rem; }
+
+.content-table td { border: 1px solid black; padding: 0.25rem 1rem 0.25rem 1rem; }
+
+/*# sourceMappingURL=styles.css.map */
