@@ -33,4 +33,45 @@ h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 
 
 .content-table td { border: 1px solid black; padding: 0.25rem 1rem 0.25rem 1rem; }
 
+/* Styles for history.html */
+.postlist { list-style-type: none; /* Remove bullets */ padding: 0; /* Remove padding */ margin: 0; /* Remove margins */ }
+
+.postrow { display: flex; }
+
+.postdate { display: flex; width: 80px; align-items: center; font-size: 0.75rem; color: grey; }
+
+.postentry { font-size: 1.5rem; }
+
+#blogpost-page { font-size: 18px; }
+
+.post-title { font-size: 2.25em; font-weight: 700; }
+
+.centre { display: block; margin-left: auto; margin-right: auto; margin-top: 2em; margin-bottom: 2em; width: 50%; }
+
+.imageshadow { box-shadow: 10px 10px 5px grey; }
+
+.article-header { padding-top: 2em; padding-bottom: 1.5em; margin-bottom: 0.5em; }
+
+.post-thumbnail { width: 100px; height: 100px; float: left; margin-bottom: 0.5em; margin-right: 1.5em; }
+
+.post-thumbnail img { width: 100px; height: 100px; }
+
+.post-rubric { float: left; }
+
+.post-meta { margin-top: 1em; font-size: 0.9em; }
+
+.description { margin-top: 2em; font-size: 1.5em; font-weight: 300; color: grey; }
+
+.clear { clear: both; }
+
+.tags { margin-top: 0.5em; padding-top: 0.5em; padding-bottom: 0.5em; margin-bottom: 0.5em; }
+
+.tagclass { margin-right: 0.5em; }
+
+.article-post { margin-bottom: 2em; }
+
+.article-post p { margin-bottom: 1.5em; }
+
+.sidebyside { float: left; }
+
 /*# sourceMappingURL=styles.css.map */
