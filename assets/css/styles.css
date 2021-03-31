@@ -48,6 +48,8 @@ h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 
 
 #blogpost-page .centre { display: block; margin-left: auto; margin-right: auto; margin-top: 2em; margin-bottom: 2em; width: 50%; }
 
+#blogpost-page .centre-wide { display: block; margin-left: auto; margin-right: auto; margin-top: 2em; margin-bottom: 2em; width: 75%; }
+
 #blogpost-page .imageshadow { box-shadow: 10px 10px 5px grey; }
 
 #blogpost-page .article-header { padding-top: 2em; padding-bottom: 1.5em; margin-bottom: 0.5em; }
@@ -70,9 +72,13 @@ h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 
 
 #blogpost-page .article-post { margin-bottom: 2em; }
 
-#blogpost-page .article-post p { margin-bottom: 1.5em; }
+#blogpost-page .article-post p { margin-bottom: 1em; }
 
 #blogpost-page .sidebyside { float: left; }
+
+#blogpost-page .article-post blockquote { margin-left: 4em; margin-right: 4em; font-family: "Times New Roman"; }
+
+#blogpost-page .article-post blockquote p { margin-bottom: 0.5em; }
 
 #projarticle-page { font-size: 16px; /* The following styles are nested inside */ }
 
