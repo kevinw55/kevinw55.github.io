@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Introduction to Language Implementation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
+  </head>
+  <body>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-md fixed-top mb-4 navbar-dark bg-dark" >
+    <div class="container">
+        <div class="navbar-brand">Kevin Wilson</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarList" aria-controls="navbarList" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarList">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav navbar-right">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/" >Home</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/history.html" >History</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/project.html" >Project</a>
+                </li>
+            
+            </ul>
+        </div>    <!-- /.navbar-collapse -->
+    </div>  <!-- /.container -->
+</nav>
+
+
+
+      <!-- End Navigation Bar -->
+      <!-- Content -->
+      <div class="container" id="projarticle-page">
+<article>
+     <header class='article-header'>
+        <div>
+          <div class='thumb'>
+            <div class='post-rubric'>
+            <div class='lecture-num'>Lecture 01</div>
+              <div class='post-title'>Introduction to Language Implementation</div>
+              <div class='post-meta'>
+                <div class='tags'>
+                  
+                </div>
+              </div>   <!-- post-meta -->
+            </div>   <!-- post-rubric -->
+          </div>     <!-- thumb  -->
+            </div>  <!-- container --> 
+         <div class='clear'></div>   
+        <div class='description'>
+          Basic Concepts
+        </div>    <!-- description -->
+      </header>
+
+    <div class='article-post'>
+      <div><h1 id="overview-of-compilation">Overview of Compilation</h1>
+
+<p><img class="centre" src="/assets/project/theory/Overview03.png" alt="Lecture 01 Image 01" /></p>
+
+<h1 id="structures">Structures</h1>
+
+<h3 id="the-symbol-structure">The Symbol Structure</h3>
+
+<p>Contains information about all the objects in a program, built during lexical analysis and added to by object description.</p>
+
+<h3 id="the-parse-tree">The Parse Tree</h3>
+
+<p>Represents the grammatical structure of the program built by the syntax analyser amended by the descriptor phase.</p>
+
+<h3 id="the-run-time-structure">The Run-time Structure</h3>
+
+<p>Represents the process state at every moment during execution.  Maintained by the code generated, its precise form is implicit in the code.  Can be compared with the idea of the virtual machine of a programming language.</p>
+
+<h1 id="processes">Processes</h1>
+
+<h2 id="lexical-analysis">Lexical Analysis</h2>
+
+<p>Converts individual characters into words, according to a simple grammar.  Adds user-defined names in the symbol structure.</p>
+
+<p>For example, if the source files begins as follows:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>begin
+    int x, y;
+</code></pre></div></div>
+
+<p>it will be read in to the lexical analyser as a stream of characters, like this:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'b' 'e' 'g' 'i' 'n' 'i' 'n' 't' 'x' ',' 'y' ';'
+</code></pre></div></div>
+
+<p>then the lexical analyser might produce a set of tokens:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s.begin  s.int  s.name  s.comma  s.name  s.semicolon
+</code></pre></div></div>
+
+<p>these are named constants which represent integer values.</p>
+
+<p>The lexical analyser would also have placed x and y in the symbol structure, by building two hash-table nodes.</p>
+
+<h2 id="syntax-analysis">Syntax Analysis</h2>
+
+<p>Converts individual words into sentences according to a context free grammar.  Usually builds an explicit representation of the sentence as a parse tree.</p>
+
+<p>The example above might produce the following:</p>
+
+<p>IMAGE PAGE 6</p>
+
+<h2 id="code-generation-compilers">Code Generation (Compilers)</h2>
+
+<p>Produces a linear sequence of code from the parse tree.</p>
+
+<p>Consider a language with simple expressions and consider a simple stack machine.  A post-order tree walk could generate the following code:</p>
+
+<p>IMAGE PAGE 7</p>
+
+<p>The MULT and ADD instructions operate on the top two items and pop them off the stack, replacing them with the result.  NEGATE works in the same way but only operates on the top item.  The red integers on the diagram show the post-order traverse.</p>
+
+<h2 id="interpretation-interpreters">Interpretation (Interpreters)</h2>
+
+<p>Instead of producing code from the tree for later execution, we perform the actions immediately.</p>
+
+<p>Taking the example from above, we again perform a post-order traversal, but this time we carry out the PUSH, MULT and ADD instructions on some internal stack as the tree is traversed.</p>
+
+<h1 id="the-symbol-structure-1">The Symbol Structure</h1>
+
+<h2 id="what-is-it">What is it?</h2>
+
+<p>\( \rho : IDE -&gt; D^* \)</p>
+
+<p>A mapping from a set of identifiers to their lists of denoted values.</p>
+
+<h2 id="why-is-it-needed">Why is it needed?</h2>
+
+<p>A name may denote different values at different places  in a program.  Provides crucial information for later phases of the implementation.</p>
+
+<h2 id="how-is-it-implemented">How is it implemented?</h2>
+
+<p>A data structure and a set of procedures for adding, deleting, extracting and amending denoted values.</p>
+
+<h3 id="possible-data-structures">Possible data structures</h3>
+<pre>
+
+1. Contiguous list          Sequential search
+2. Linked list              Sequential search
+3. Binary tree              Binary chop
+4. Hash table + rehash      Two hash functions
+5. Hash table + chain list  Hash function + sequential search
+6. Hash table + chain tree  hash function + binary chop
+</pre>
+
+<h2 id="what-are-denoted-values">What are denoted values?</h2>
+
+<p>\( D = DR \times \circ \times \circ^* \times c \times …  \)</p>
+
+<p>All identifiers will be entered into the symbol table.  Each type of entry will have slightly different information stored with it:</p>
+
+<table>
+ <thead>
+    <tr>
+      <th class="col1"></th>
+      <th class="col2"></th>
+      <th class="col3"></th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td>Variable</td><td>\( \circ \)</td><td>address or offset</td></tr>
+<tr><td>Array</td><td>\( \circ^* \)</td><td>set of offsets</td></tr>
+<tr><td>Label</td><td>\( c \)</td><td>code pointer + environment</td></tr>
+<tr><td>Procedures</td><td>\( DR \)</td><td>declaration record</td></tr>
+</tbody>
+</table>
+
+<p>Depending on the type of entry, there might be other information, such as:</p>
+
+<ul>
+  <li>Number of dimensions of array</li>
+  <li>Type of object (real, int, boolean etc)</li>
+  <li>Number and type of parameters of a procedure</li>
+  <li>Line number of definition, for display of error messages</li>
+</ul>
+
+<p>A declaration record is stored for each function or procedure identifier, a template structure for describing the state at run-time.</p>
+
+<p>It might contain:</p>
+
+<ul>
+  <li>Values of locals and parameters</li>
+  <li>Values of temporaries</li>
+  <li>Where to return to.</li>
+  <li>Where to find non-local references.</li>
+  <li>What code to execute.</li>
+</ul>
+</div>
+    </div>
+</article>
+</div>
+
+      <!-- End Content -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,22 @@
+digraph  {
+    graph [nodesep=1.5];   
+    node [shape=rect];
+    SC [label="SOURCE CODE" color=white fontname="Arial"]
+    LA [label="Lexical Analysis" color=black]
+    LI [label="LEXICAL ITEMS" color=white fontname="Arial"]
+    SA [label="Syntax Analysis" color=black]
+    PT [label="PARSE TREE" color=white fontname="Arial"]
+    CG [label="Code Generation" color=black]
+    OC [label="OBJECT CODE" color=white fontname="Arial"] 
+    SS [label="SYMBOL \n STRUCTURE" color=white fontname="Arial"]   
+
+    subgraph cluster {
+        color=white
+        SC -> LA -> LI -> SA -> PT -> CG -> OC;
+    }
+
+    LA:e -> SS;
+    PT -> SS;
+    SS -> CG:e;
+    
+}

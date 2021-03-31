@@ -44,34 +44,62 @@ h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 
 
 #blogpost-page { font-size: 18px; }
 
-.post-title { font-size: 2.25em; font-weight: 700; }
+#blogpost-page .post-title { font-size: 2.25em; font-weight: 700; }
 
-.centre { display: block; margin-left: auto; margin-right: auto; margin-top: 2em; margin-bottom: 2em; width: 50%; }
+#blogpost-page .centre { display: block; margin-left: auto; margin-right: auto; margin-top: 2em; margin-bottom: 2em; width: 50%; }
 
-.imageshadow { box-shadow: 10px 10px 5px grey; }
+#blogpost-page .imageshadow { box-shadow: 10px 10px 5px grey; }
 
-.article-header { padding-top: 2em; padding-bottom: 1.5em; margin-bottom: 0.5em; }
+#blogpost-page .article-header { padding-top: 2em; padding-bottom: 1.5em; margin-bottom: 0.5em; }
 
-.post-thumbnail { width: 100px; height: 100px; float: left; margin-bottom: 0.5em; margin-right: 1.5em; }
+#blogpost-page .post-thumbnail { width: 100px; height: 100px; float: left; margin-bottom: 0.5em; margin-right: 1.5em; }
 
-.post-thumbnail img { width: 100px; height: 100px; }
+#blogpost-page .post-thumbnail img { width: 100px; height: 100px; }
 
-.post-rubric { float: left; }
+#blogpost-page .post-rubric { float: left; }
 
-.post-meta { margin-top: 1em; font-size: 0.9em; }
+#blogpost-page .post-meta { margin-top: 1em; font-size: 0.9em; }
 
-.description { margin-top: 2em; font-size: 1.5em; font-weight: 300; color: grey; }
+#blogpost-page .description { margin-top: 2em; font-size: 1.5em; font-weight: 300; color: grey; }
 
-.clear { clear: both; }
+#blogpost-page .clear { clear: both; }
 
-.tags { margin-top: 0.5em; padding-top: 0.5em; padding-bottom: 0.5em; margin-bottom: 0.5em; }
+#blogpost-page .tags { margin-top: 0.5em; padding-top: 0.5em; padding-bottom: 0.5em; margin-bottom: 0.5em; }
 
-.tagclass { margin-right: 0.5em; }
+#blogpost-page .tagclass { margin-right: 0.5em; }
 
-.article-post { margin-bottom: 2em; }
+#blogpost-page .article-post { margin-bottom: 2em; }
 
-.article-post p { margin-bottom: 1.5em; }
+#blogpost-page .article-post p { margin-bottom: 1.5em; }
 
-.sidebyside { float: left; }
+#blogpost-page .sidebyside { float: left; }
+
+#projarticle-page { font-size: 16px; /* The following styles are nested inside */ }
+
+#projarticle-page .lecture-num { font-size: 1em; }
+
+#projarticle-page .post-title { font-size: 2.25em; font-weight: 700; }
+
+#projarticle-page .description { margin-top: 1em; font-size: 1.5em; font-weight: 300; color: grey; }
+
+#projarticle-page .article-header { padding-top: 2em; padding-bottom: 1.5em; margin-bottom: 0.5em; }
+
+#projarticle-page h1 { font-size: 1.5em; font-weight: 700; border-bottom: 3px solid black; margin-top: 2em; margin-bottom: 1em; }
+
+#projarticle-page h2 { font-size: 1.2em; font-weight: 700; text-decoration-line: underline; margin-top: 1em; margin-bottom: 1em; }
+
+#projarticle-page h3 { font-size: 1em; font-weight: 700; }
+
+#projarticle-page .highlighter-rouge { background-color: lightgrey; padding: 0.5em; margin-bottom: 1em; }
+
+#projarticle-page pre { margin: 0em; }
+
+#projarticle-page code { color: #000000; }
+
+#projarticle-page table { width: 100%; margin-bottom: 1em; }
+
+#projarticle-page th.col1, #projarticle-page th.col2 { width: 15%; }
+
+#projarticle-page th.col3 { width: 70%; /* Not necessary, since only 70% width remains */ }
 
 /*# sourceMappingURL=styles.css.map */
