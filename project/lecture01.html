@@ -124,11 +124,20 @@
 
 <p>Produces a linear sequence of code from the parse tree.</p>
 
+<p><img class="centre" src="/assets/project/theory/Overview07.png" alt="Lecture 01 Image 03" /></p>
+
 <p>Consider a language with simple expressions and consider a simple stack machine.  A post-order tree walk could generate the following code:</p>
 
-<p>IMAGE PAGE 7</p>
+<ol>
+  <li>PUSH 3</li>
+  <li>PUSH 4</li>
+  <li>MULT</li>
+  <li>PUSH 6</li>
+  <li>NEGATE</li>
+  <li>ADD</li>
+</ol>
 
-<p>The MULT and ADD instructions operate on the top two items and pop them off the stack, replacing them with the result.  NEGATE works in the same way but only operates on the top item.  The red integers on the diagram show the post-order traverse.</p>
+<p>The MULT and ADD instructions operate on the top two items and pop them off the stack, replacing them with the result.  NEGATE works in the same way but only operates on the top item.  The integers in brackets on the diagram show the order in which the nodes are visited during a post-order traverse.</p>
 
 <h2 id="interpretation-interpreters">Interpretation (Interpreters)</h2>
 
