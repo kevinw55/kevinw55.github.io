@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Formal Language Theory</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
+  </head>
+  <body>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-md fixed-top mb-4 navbar-dark bg-dark" >
+    <div class="container">
+        <div class="navbar-brand">Kevin Wilson</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarList" aria-controls="navbarList" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarList">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav navbar-right">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/" >Home</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/history.html" >History</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/project.html" >Project</a>
+                </li>
+            
+            </ul>
+        </div>    <!-- /.navbar-collapse -->
+    </div>  <!-- /.container -->
+</nav>
+
+
+
+      <!-- End Navigation Bar -->
+      <!-- Content -->
+      <div class="container" id="projarticle-page">
+<article>
+     <header class='article-header'>
+        <div>
+          <div class='thumb'>
+            <div class='post-rubric'>
+            <div class='lecture-num'>Lecture 02</div>
+              <div class='post-title'>Formal Language Theory</div>
+              <div class='post-meta'>
+                <div class='tags'>
+                  
+                </div>
+              </div>   <!-- post-meta -->
+            </div>   <!-- post-rubric -->
+          </div>     <!-- thumb  -->
+            </div>  <!-- container --> 
+         <div class='clear'></div>   
+        <div class='description'>
+          
+        </div>    <!-- description -->
+      </header>
+
+    <div class='article-post'>
+      <div><h1 id="formal-language-theory">Formal Language Theory</h1>
+
+<p>We try to split the issues of the formal structure of a program from any questions of what programs might mean.</p>
+
+<p>We certainly need answers to the following questions:</p>
+
+<ol>
+  <li>
+    <p>How are characters structured into words (Lexical question).</p>
+  </li>
+  <li>
+    <p>How are words structured into programs (Parser question).</p>
+  </li>
+  <li>
+    <p>Is program P grammatically legal?</p>
+  </li>
+  <li>
+    <p>What are the proper subcomponents of program P?  What are the proper subcomponents of the subcomponents, and so on.</p>
+  </li>
+</ol>
+
+<h1 id="history--motivation">History &amp; Motivation</h1>
+
+<h2 id="chomsky-1950s">Chomsky (1950s)</h2>
+
+<p>Adapted the production systems of Eric Post for the analysis of languages.  <strong>Transformation Grammar</strong> was developed to give precise description to the striking features of language.</p>
+
+<h2 id="computer-science-1960s">Computer Science (1960s)</h2>
+
+<p>Borrowing Chomsky’s ideas defined ALGOL-60 by a <strong>Context-Free</strong> grammar.  This leads to syntax directed compilation and automatic generation of parsers.</p>
+
+<h2 id="the-problem">The problem</h2>
+
+<p>To go from a concrete representation of the program (the source code as processed by the Lexical analysis phase) to an abstract representation (a parse tree).</p>
+
+<h3 id="concrete-syntax">Concrete Syntax</h3>
+
+<p>x := a + 24;</p>
+
+<p>Grammatical structure is IMPLICIT</p>
+
+<h3 id="abstract-syntax">Abstract Syntax</h3>
+
+<!-- Image -->
+
+<p>Grammatical structure is EXPLICIT</p>
+
+<h3 id="typical-implementation">Typical Implementation</h3>
+
+<!-- Image -->
+
+<p>t - type (s.assign)
+s - size (number of components)
+$/theta$ - continuation (flow of control)
+p_i - proper subcomponents (similar nodes)</p>
+
+<h3 id="example">Example</h3>
+
+<p>begin
+     int x, y;
+     proc f(): print “CC324\r\n”;
+     x := 4;
+  l: y := 5;
+     x := 2
+end</p>
+
+<!-- Image -->
+
+<!-- 16 -->
+<h3 id="definition">Definition</h3>
+
+<p>A Grammar \(G\) is a quadruple</p>
+
+<p>\(G = \{ N, T, P, s \} \)</p>
+
+<p>where</p>
+
+<p>\( N \) is a finite set of nonterminals</p>
+
+<p>\( T \) is a finite set of terminals</p>
+
+<p>\( P \) is a finite set of productions</p>
+
+<p>\( s \in N \) is the start symbol</p>
+
+<p>\( N \cap T = \varnothing    \hspace{20mm} \)  \( N \) and  \( T \) are completely different sets</p>
+
+<p>Let \( S = N \cup T  \hspace{20mm} \) Symbols</p>
+
+<p>Recall \( S^* \) is set of all finite sequences of symbols (including the empty set)</p>
+
+<p>\( P \subseteq  S^* N S^* \times S^*  \)</p>
+
+<p>i.e. the productions are pairs \( &lt;\alpha, \beta&gt; \) of sequences of symbols.</p>
+
+<p>\( \alpha \) cannot be empty and must contain at least one nonterminal.</p>
+
+<p>We will write \( &lt;\alpha, \beta&gt; \) as \( \alpha \rightarrow \beta  \)</p>
+
+<p>The cross product of two sets is a pair such that one member is a member of one set, and the other a member of the other.</p>
+
+<!-- 17 -->
+<h3 id="definition-1">Definition</h3>
+
+<p>Let \( G = \{ N, T, P, s \} \) This is the particular grammar we are working with</p>
+
+<p>Let \( S = N \cup T \)</p>
+
+<p>Let \( \alpha, \beta, \gamma, \delta \in S^* \hspace{20mm} \)  (are all sequences of symbols)</p>
+
+<p>then</p>
+
+<p>\( \gamma \alpha \delta \underset{G}{\Rightarrow} \gamma \beta \delta \hspace{10mm} \Leftrightarrow_{def} \hspace{10mm} \alpha \rightarrow \beta \in P \hspace{20mm} \) (we can replace any \( \alpha \) with \( \beta \) )</p>
+
+<p>Read \( \underset{G}{\Rightarrow} \) as “directly derives in G”</p>
+
+<h3 id="definition-2">Definition</h3>
+
+<p>Let \( \alpha, \alpha_1, \alpha_2, \alpha_3, …., \alpha_n, \beta \in S^* \)</p>
+
+<p>then</p>
+
+<p>\( \alpha \underset{G}{\Rightarrow}^+ \beta \hspace{10mm} \Leftrightarrow_{def} \)</p>
+
+<p>\( \qquad \alpha \underset{G}{\Rightarrow} \alpha_1 \)
+\( \quad \land \quad \)
+\( \alpha_1 \underset{G}{\Rightarrow} \alpha_2 \)
+\( \quad \land \quad \)
+\( \dots  \)
+\( \quad \land \quad \)
+\( \alpha_{n-1} \underset{G}{\Rightarrow} \alpha_n \)
+\( \quad \land \quad \)
+\( \alpha_n \underset{G}{\Rightarrow} \beta  \)</p>
+
+<p>Also:</p>
+
+<p>\( \alpha \underset{G}{\Rightarrow}^* \beta \hspace{10mm} \Leftrightarrow \hspace{10mm} \alpha \Rightarrow^+ \beta \quad \lor \quad \alpha = \beta \)</p>
+
+<p>Read \( \underset{G}{\Rightarrow}^* \) as “derives in G”</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>\( \Rightarrow^* \quad \) derives in no steps or more</p>
+
+<p>\( \Rightarrow^+ \quad \) derives in one step or more</p>
+
+<p>\( \Rightarrow \quad \) derives in one step exactly</p>
+
+<!-- 18 -->
+
+</div>
+    </div>
+</article>
+</div>
+
+      <!-- End Content -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>
