@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Formal Language Theory</title>
+    <title>L02 - Formal Language Theory</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
@@ -52,7 +52,7 @@
           <div class='thumb'>
             <div class='post-rubric'>
             <div class='lecture-num'>Lecture 02</div>
-              <div class='post-title'>Formal Language Theory</div>
+              <div class='post-title'>L02 - Formal Language Theory</div>
               <div class='post-meta'>
                 <div class='tags'>
                   
@@ -63,12 +63,13 @@
             </div>  <!-- container --> 
          <div class='clear'></div>   
         <div class='description'>
-          
+          Theoretical Background
         </div>    <!-- description -->
       </header>
 
     <div class='article-post'>
-      <div><h1 id="formal-language-theory">Formal Language Theory</h1>
+      <div><!-- 12 -->
+<h1 id="formal-language-theory">Formal Language Theory</h1>
 
 <p>We try to split the issues of the formal structure of a program from any questions of what programs might mean.</p>
 
@@ -89,6 +90,7 @@
   </li>
 </ol>
 
+<!-- 13 -->
 <h1 id="history--motivation">History &amp; Motivation</h1>
 
 <h2 id="chomsky-1950s">Chomsky (1950s)</h2>
@@ -103,38 +105,51 @@
 
 <p>To go from a concrete representation of the program (the source code as processed by the Lexical analysis phase) to an abstract representation (a parse tree).</p>
 
+<!-- 14 -->
 <h3 id="concrete-syntax">Concrete Syntax</h3>
 
-<p>x := a + 24;</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x := a + 24;
+</code></pre></div></div>
 
 <p>Grammatical structure is IMPLICIT</p>
 
 <h3 id="abstract-syntax">Abstract Syntax</h3>
 
 <!-- Image -->
+<p><img class="centre" src="/assets/project/theory/L02P014A_AbstractSyntax.png" alt="Lecture 02 Image 01" /></p>
 
 <p>Grammatical structure is EXPLICIT</p>
 
 <h3 id="typical-implementation">Typical Implementation</h3>
 
 <!-- Image -->
+<p><img class="centre" src="/assets/project/theory/L02P014B_TypicalImplementation.png" alt="Lecture 02 Image 02" /></p>
 
-<p>t - type (s.assign)
-s - size (number of components)
-$/theta$ - continuation (flow of control)
-p_i - proper subcomponents (similar nodes)</p>
+<p>t      type (s.assign)<br />
+s      size (number of components)<br />
+c      continuation (flow of control)<br />
+\(p_i\)      proper subcomponents (similar nodes)</p>
 
+<!-- 15 -->
 <h3 id="example">Example</h3>
 
-<p>begin
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>begin
      int x, y;
-     proc f(): print “CC324\r\n”;
+     proc f(): print "CC324*C*L";
      x := 4;
   l: y := 5;
      x := 2
-end</p>
+end
+</code></pre></div></div>
 
 <!-- Image -->
+<p><img class="centre" src="/assets/project/theory/L02P015A_Example.png" alt="Lecture 02 Image 03" /></p>
+
+<p>Black Arrow     - Proper Subcomponents<br />
+Red Arrow     - Entries in the Symbol Structure<br />
+Orange Arrow     - Continuation</p>
+
+<p>Continuation isn’t a syntax issue.  It’s purely to do with interpreters, since compilers just execute the code.  The interpreter must execute straight from the parse tree.</p>
 
 <!-- 16 -->
 <h3 id="definition">Definition</h3>
