@@ -68,9 +68,13 @@
       </header>
 
     <div class='article-post'>
-      <div><h1 id="overview-of-compilation">Overview of Compilation</h1>
+      <div><!-- 3 -->
+
+<h1 id="overview-of-compilation">Overview of Compilation</h1>
 
 <p><img class="centre" src="/assets/project/theory/Overview03.png" alt="Lecture 01 Image 01" /></p>
+
+<!-- 4 -->
 
 <h1 id="structures">Structures</h1>
 
@@ -85,6 +89,8 @@
 <h3 id="the-run-time-structure">The Run-time Structure</h3>
 
 <p>Represents the process state at every moment during execution.  Maintained by the code generated, its precise form is implicit in the code.  Can be compared with the idea of the virtual machine of a programming language.</p>
+
+<!-- 5 -->
 
 <h1 id="processes">Processes</h1>
 
@@ -112,6 +118,8 @@
 
 <p>The lexical analyser would also have placed x and y in the symbol structure, by building two hash-table nodes.</p>
 
+<!-- 6 -->
+
 <h2 id="syntax-analysis">Syntax Analysis</h2>
 
 <p>Converts individual words into sentences according to a context free grammar.  Usually builds an explicit representation of the sentence as a parse tree.</p>
@@ -119,6 +127,8 @@
 <p>The example above might produce the following:</p>
 
 <p><img class="centre" src="/assets/project/theory/Overview06.png" alt="Lecture 01 Image 02" /></p>
+
+<!-- 7 -->
 
 <h2 id="code-generation-compilers">Code Generation (Compilers)</h2>
 
@@ -139,11 +149,15 @@
 
 <p>The MULT and ADD instructions operate on the top two items and pop them off the stack, replacing them with the result.  NEGATE works in the same way but only operates on the top item.  The integers in brackets on the diagram show the order in which the nodes are visited during a post-order traverse.</p>
 
+<!-- 8 -->
+
 <h2 id="interpretation-interpreters">Interpretation (Interpreters)</h2>
 
 <p>Instead of producing code from the tree for later execution, we perform the actions immediately.</p>
 
 <p>Taking the example from above, we again perform a post-order traversal, but this time we carry out the PUSH, MULT and ADD instructions on some internal stack as the tree is traversed.</p>
+
+<!-- 9 -->
 
 <h1 id="the-symbol-structure-1">The Symbol Structure</h1>
 
@@ -161,6 +175,8 @@
 
 <p>A data structure and a set of procedures for adding, deleting, extracting and amending denoted values.</p>
 
+<!-- 10 -->
+
 <h3 id="possible-data-structures">Possible data structures</h3>
 <pre>
 
@@ -171,6 +187,8 @@
 5. Hash table + chain list  Hash function + sequential search
 6. Hash table + chain tree  hash function + binary chop
 </pre>
+
+<!-- 11 -->
 
 <h2 id="what-are-denoted-values">What are denoted values?</h2>
 
