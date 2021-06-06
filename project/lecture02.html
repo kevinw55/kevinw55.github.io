@@ -415,7 +415,7 @@ Orange Arrow     - Continuation</p>
 
 <p>\( E \rightarrow E+T \enspace | \enspace T \)</p>
 
-<p>Nature of productions</p>
+<h4 id="nature-of-productions">Nature of productions</h4>
 
 <p>\( E \rightarrow E+T \enspace | \enspace T \qquad \) (left recursive)</p>
 
@@ -425,7 +425,7 @@ Orange Arrow     - Continuation</p>
 
 <p>\( [x]^* \) means zero or more occurrences.</p>
 
-<p>Syntax Diagrams</p>
+<h4 id="syntax-diagrams">Syntax Diagrams</h4>
 
 <!-- Diagram -->
 
@@ -472,6 +472,84 @@ Orange Arrow     - Continuation</p>
 <p>\( E \underset {G} {\Rightarrow}^*  i * ( i + i )  \)</p>
 
 <!-- 24 -->
+
+<h2 id="derivation-trees">DERIVATION TREES</h2>
+
+<p>We can describe a derivation in a Context Free Grammar by means of a tree.</p>
+
+<p>A TREE is a pair \( \lt N, E \gt \) where:</p>
+
+<p>\(N\) is a finite set of nodes</p>
+
+<p>\(E\)  is a finite set of edges</p>
+
+<p>Edges are ordered pairs of nodes:</p>
+
+<p>\( \lt n_1 , n_2 \gt \hspace{3em} n_1, n_2  \in N \)</p>
+
+<h4 id="constraints">Constraints:</h4>
+
+<p>1) There exists precisely one node \(n\) such that there does not exist an edge \( \lt n^\prime, n \gt \) for some \( n^\prime \).  (n is the ROOT)</p>
+
+<p>2) for every \( n \in N \) there exists a sequence of edges:</p>
+
+<p>\( \lt r, n_1 \gt \lt n_1, n_2 \gt \dots \lt n_i-1, n_i \gt \dots \lt n_u, n \gt   where (u \geqslant 0)  \)</p>
+
+<p>This says the tree is connected.  This is implied by rule 1 and this constraint is redundant.</p>
+
+<p>3) if \( \hspace{2em} \lt n^\prime, n \gt , \lt n^{\prime\prime}, n \gt \in E \hspace{2em}\) then \( \hspace{2em} n^\prime = n^{\prime\prime} \)</p>
+
+<p>(Exactly one edge enters every node - no loops)</p>
+
+<!-- 24 again -->
+
+<p>We construct a derivation tree from a derivation in a CFG (type 2) as follows:</p>
+
+<p>1)  Set \( N_0 = \{r\}, E_0 = \{\} \)</p>
+
+<p>( \(r\) is a node labelled s )</p>
+
+<p>2) For  \( \quad i \gt 0 \quad \) let</p>
+
+<p>\( \alpha N \beta \Rightarrow \alpha \gamma \beta \)</p>
+
+<p>be the \( i^{th}\)  line of the derivation.</p>
+
+<p>\( | \gamma | = n \hspace{3em} \gamma = s_1 \dots s_n  \)</p>
+
+<p>Let \( \lt N_{i-1}, E_{i-1} \gt \) be the derivation tree for the first \( i-1 \) lines:</p>
+
+<p>Set \( \quad N_i = N_{i-1} \cup \Sigma \quad and \quad E_i = E_{i-1} \cup \Pi  \)</p>
+
+<p>where</p>
+
+<p>\( \Sigma \) is a set of \(n\) new nodes labelled \(s_1 \dots s_n \)</p>
+
+<p>and</p>
+
+<p>\( \Pi \) is a set of \(n\) edges</p>
+
+<p>\( \lt q, \sigma_1 \gt \dots \lt q, \sigma_n \gt \)</p>
+
+<p>where</p>
+
+<p>\( \sigma_1, \dots, \sigma_n \in \Sigma \)</p>
+
+<p>\( q \in N_{i-1} \) is the node corresponding to the nonterminal \(N\)</p>
+
+<!-- 25 -->
+
+<h2 id="things-you-can-do">THINGS YOU CAN DO</h2>
+
+<p>1) Check that the resulting \( \lt N, E \gt \) is a tree.</p>
+
+<p>2) Show that \( q \in N_{i-1} \) used in the construction always exists.</p>
+
+<p>3) This construction shows that the existence of a derivation implies the existence of a derivation tree.  Show that the existence of a derivation tree implies the existence of a derivation.</p>
+
+<p>1 &amp; 2 are crucial parts of the constructive proof.</p>
+
+<p>3 means we can always draw graphs without fear that they don’t correspond to any derivation.</p>
 
 </div>
     </div>

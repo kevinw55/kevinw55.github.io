@@ -94,9 +94,11 @@ h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 
 
 #projarticle-page h1 { font-size: 1.5em; font-weight: 700; border-bottom: 3px solid black; margin-top: 2em; margin-bottom: 1em; }
 
-#projarticle-page h2 { font-size: 1.2em; font-weight: 700; text-decoration-line: underline; margin-top: 1em; margin-bottom: 1em; }
+#projarticle-page h2 { font-size: 1.25em; font-weight: 700; text-decoration-line: underline; margin-top: 1em; margin-bottom: 1em; }
 
-#projarticle-page h3 { font-size: 1em; font-weight: 700; }
+#projarticle-page h3 { font-size: 1.1em; font-weight: 700; margin-top: 1em; margin-bottom: 0.5em; }
+
+#projarticle-page h4 { font-size: 1em; font-weight: 500; text-decoration-line: underline; margin-top: 1em; margin-bottom: 0.5em; }
 
 #projarticle-page .highlighter-rouge { background-color: lightgrey; padding: 0.5em; margin-bottom: 1em; }
 
