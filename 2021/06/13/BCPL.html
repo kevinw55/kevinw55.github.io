@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BCPL</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
+  </head>
+  <body>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-md fixed-top mb-4 navbar-dark bg-dark" >
+    <div class="container">
+        <div class="navbar-brand">Kevin Wilson</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarList" aria-controls="navbarList" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarList">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav navbar-right">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/" >Home</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/history.html" >History</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/project.html" >Project</a>
+                </li>
+            
+            </ul>
+        </div>    <!-- /.navbar-collapse -->
+    </div>  <!-- /.container -->
+</nav>
+
+
+
+      <!-- End Navigation Bar -->
+      <!-- Content -->
+      <div class="container" id="blogpost-page">
+<article>
+      <header class='article-header'>
+        <div class='container'>
+          <div class='thumb'>
+            <div class='post-thumbnail'>
+                <img src='/assets/images/punched_tape.jpg' />
+            </div>
+            <div class='post-rubric'>
+              <span class='post-title'>BCPL</span>
+              <div class='post-meta'>
+                <div>
+                  By Kevin Wilson on <time>13 Jun 2021</time>
+<!--              By <a href='/me'>Kevin Wilson</a> on <time>13 Jun 2021</time>  -->
+                </div>
+                <div class='tags'>
+                  
+                    <span class='tagclass'>Programming</span>
+<!--                    <a class='tagclass' href='/tag/Programming'>Programming</a>  -->
+                  
+                    <span class='tagclass'>Language</span>
+<!--                    <a class='tagclass' href='/tag/Language'>Language</a>  -->
+                  
+                </div>
+              </div>   <!-- post-meta -->
+            </div>   <!-- post-rubric -->
+          </div>     <!-- thumb  -->
+            </div>  <!-- container --> 
+         <div class='clear'></div>   
+        <div class='description'>
+          An early and influential programming language
+        </div>    <!-- description -->
+      </header>
+
+    <div class='article-post'>
+      <p><img class="centre imageshadow" width="30%" src="/assets/images/20210613/BCPL001.jpg" alt="Book Cover" /></p>
+
+<p>BCPL is a programming language that was popular in the 1970s and 1980s.  It was designed by Mark Richards in 1967 as a systems programming tool, with an easily portable compiler, and was widely used on many undergraduate courses to teach programming.</p>
+
+<p>BCPL stands for Basic CPL, and as the name implies, it was heavily influenced by CPL, (Combined Programming Language) which was developed at Cambridge and London universities, in 1963.</p>
+
+<p>It’s most distinctive feature, when compared to most high level programming languages, is that it only has one data type - the bit pattern.  This means that there is no need for the programmer to make type declarations - any variable can contain any type of value. Or a better way to put it, is that the value in a variable can be interpreted by the programmer in any way they want.</p>
+
+<p>Having said that, the standard arithmetic and operators are provided - for example, the addition operator (+) interprets the bit patterns as integers, and produces a bit pattern that can also be interpreted as an integer.  But the compiler does no type checking.  That means that it is possible to write a program which will, for example, multiply an integer with a Boolean value and interpret the result as an ASCII code.  This gives the programmer a lot more freedom and flexibility, but it also means that they have to be more careful.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// First BCPL program
+
+GET "LIBHDR"
+LET START() BE
+    $(
+        LET a, b, c, sum = 1, 2, 3, 0
+        sum := a + b + c
+        WRITES("Sum is ")
+        WRITEN(sum)
+    $)
+</code></pre></div></div>
+
+<p>The library LIBHDR contains the implementations of the system-dependent commands, which is to the say, the input/output commands.  These include:</p>
+
+<ul>
+  <li>RDCH                (Read Character)</li>
+  <li>WRCH                (Write Character)</li>
+</ul>
+
+<p>These two form the basis for the other commands, such as:</p>
+
+<ul>
+  <li>WRITES             (Write string)</li>
+  <li>WRITEN             (Write integer)</li>
+  <li>WRITEOCT</li>
+  <li>
+    <p>WRITEHEX</p>
+  </li>
+  <li>READN              (Read integer)</li>
+</ul>
+
+<p>There are also commands for redirecting streams, such as:</p>
+
+<ul>
+  <li>SELECTINPUT(stream)</li>
+  <li>SELECTOUTPUT(stream)</li>
+</ul>
+
+<p>A BCPL stream is simply regarded as a sequence of characters, with no structure as far as the compiler is concerned.  All I/O operations are simply carried out on the currently selected input or output stream.  It is left to the operating system to connect those streams to physical input and output devices.</p>
+
+<p>BCPL also has the normal control structures:</p>
+
+<ul>
+  <li>IF statement</li>
+  <li>WHILE loop</li>
+  <li>UNTIL loop</li>
+  <li>REPEATWHILE loop</li>
+  <li>REPEATUNTIL loop</li>
+  <li>FOR loop</li>
+</ul>
+
+<p>and allows user-defined procedures and functions.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// This program asks the user for a sequence of numbers
+// and calculates the factorial of each one
+    
+GET "LIBHDR"
+
+LET FACTORIAL(num) = VALOF
+    $(
+        LET total = 1
+        FOR x = 1 TO num DO 
+            total := total * x
+        RESULTIS total
+    $)
+
+
+LET START() BE
+    $(
+        LET inp = 0
+        LET res = 0
+        $(
+            WRITES("Enter a number - type -1 to finish")
+            WRITES("*N")                        // Output a new line
+            inp := READN()
+            IF inp &gt;= 0 THEN 
+                $(
+                    res := FACTORIAL(inp)
+                    WRITEN(res)
+                    WRITES("*N")
+                $)
+        $) REPEATUNTIL inp &lt; 0
+    $)
+</code></pre></div></div>
+
+<p>The only data structure the language provides is a one-dimensional array called a vector, which is accessed by using the ! operator.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// This program reads in 10 numbers into an array and prints them out in reverse order
+            
+GET "LIBHDR"
+LET START() BE
+    $(
+        LET list = VEC 9    // Creates an array of 10 storage locations
+
+        WRITES("Type in 10 integers*N")
+        FOR count = 0 TO 9 DO
+            $(
+                WRITES("Type in integer ")
+                WRITEN(count+1)
+                WRITES(" followed by return*N")
+                list!count := READN()
+            $)
+                
+        WRITES("They will now be displayed in reverse order*N")
+            
+        FOR outcount = 9 TO 0 BY -1 DO
+            $(
+                WRITEN(list!outcount)
+                WRITES("*N")
+            $)
+    $) 
+</code></pre></div></div>
+
+<p>If you want something more complex, like a 2 dimensional array, you have to develop a set of routines and functions to implement that structure.</p>
+
+<p>In order to facilitate that, BCPL provides the operators @ and ! which will interpret a bit pattern as a storage address - in other words, as a pointer.  This allows indirection to be used, and enables the programmer to build more complex data structures.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET "LIBHDR"
+LET START() BE
+    $(
+        LET v = 42
+        LET w = 66
+        LET a = 0
+    
+        WRITEN(v)           // Outputs the value '42'
+        WRITES("*N")
+        WRITEN(@v)          // Outputs the address of the location that contains '42'
+        WRITES("*N")
+
+        a := @w             // Stores the address that contains '66' in the variable a
+        WRITEN(a)           // Outputs the address that has '66' stored in it
+        WRITES("*N") 
+        WRITEN(!a)          // Outputs the value that is pointed to by the variable a
+        WRITES("*N")
+    $)
+</code></pre></div></div>
+
+<p>BCPL is no longer in widespread use, but it was very influential, due to it being used as the basis of a language called B, that Dennis Ritchie and Ken Thompson developed at Bell labs in 1969.</p>
+
+<p>When Ritchie was looking for a language in which to develop utility programs, for a new operating system called UNIX that he was implementing, he modified B to add the features that he needed, and named the new language C.</p>
+
+<p>C is still one of the most popular programming languages in use today, especially for jobs like writing compilers and operating system applications.</p>
+
+    </div>
+</article>
+</div>
+
+      <!-- End Content -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>

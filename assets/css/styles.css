@@ -82,6 +82,12 @@ h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 
 
 #blogpost-page .textlist { background-color: lightgrey; font-family: monospace; font-size: 0.75em; list-style-type: none; padding: 1em; margin: 1em; }
 
+#blogpost-page .highlighter-rouge { background-color: lightgrey; padding: 0.75em; margin-bottom: 1em; }
+
+#blogpost-page pre { margin: 0em; }
+
+#blogpost-page code { color: #000000; font-family: monospace; font-size: 1em; }
+
 #projarticle-page { font-size: 16px; /* The following styles are nested inside */ }
 
 #projarticle-page .lecture-num { font-size: 1em; }
