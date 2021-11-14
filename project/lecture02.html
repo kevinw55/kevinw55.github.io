@@ -551,6 +551,136 @@ Orange Arrow     - Continuation</p>
 
 <p>3 means we can always draw graphs without fear that they don’t correspond to any derivation.</p>
 
+<!-- 26 -->
+
+<h2 id="example-2">EXAMPLE</h2>
+
+<p>\( G = \{  \{ A,B \} , \{ a,b \} , P , A \} \)</p>
+
+<p>\( P = \{ A \rightarrow aBA \enspace | \enspace a \)</p>
+
+<p>\( \qquad B \rightarrow AbB \enspace | \enspace AA \enspace | \enspace ba \enspace \} \)</p>
+
+<h3 id="a-derivation">A Derivation:</h3>
+
+<p>\( A \Rightarrow aBA \)</p>
+
+<p>\( \quad \Rightarrow aAbBA \)</p>
+
+<p>\( \quad \Rightarrow aabBA \)</p>
+
+<p>\( \quad \Rightarrow aabbaA \)</p>
+
+<p>\( \quad \Rightarrow aabbaa \)</p>
+
+<h3 id="its-tree">It’s tree</h3>
+
+<!-- Diagram here -->
+
+<!-- 27 -->
+
+<h2 id="ambiguity">AMBIGUITY</h2>
+
+<p>A CFG \( \enspace G \enspace \) is AMBIGUOUS iff there exists more than one distinct derivation of any sentence in \( L(G) \)</p>
+
+<p>(hence two or more derivation trees)</p>
+
+<h3 id="example-3">EXAMPLE</h3>
+
+<p>\( G = \{  \{ E \} , \{ i,*,+ \} , P , E \} \)</p>
+
+<p>\( P = \{ \enspace E \rightarrow E  +  E \)</p>
+
+<p>\( \qquad \quad E \rightarrow E  *  E \)</p>
+
+<p>\( \qquad \quad E \rightarrow i \)</p>
+
+<p>\( \qquad \} \)</p>
+
+<h3 id="consider">consider:</h3>
+
+<p>\( E \Rightarrow E + E \)</p>
+
+<p>\( \quad \Rightarrow i + E \)</p>
+
+<p>\( \quad \Rightarrow i + E * E \)</p>
+
+<p>\( \quad \Rightarrow i + i * E \)</p>
+
+<p>\( \quad \Rightarrow i + i * i \)</p>
+
+<p>\( E \Rightarrow E * E \)</p>
+
+<p>\( \quad \Rightarrow E + E * E \)</p>
+
+<p>\( \quad \Rightarrow i + E * E \)</p>
+
+<p>\( \quad \Rightarrow i + i * E \)</p>
+
+<p>\( \quad \Rightarrow i + i * i \)</p>
+
+<p>we can see this more clearly from their graphs …</p>
+
+<!-- 28 -->
+
+<!-- Diagram here -->
+
+<!-- Diagram here -->
+
+<p>3 + 4 * 2 = 11</p>
+
+<p>or is it 14 ??!!</p>
+
+<p>We need to do something about this!</p>
+
+<p>It isn’t possible to write a program which will say, for any kind of grammar, if it is ambiguous.</p>
+
+<!-- 29 -->
+
+<h2 id="chain-and-full-reduction-of-derivation-trees">CHAIN AND FULL REDUCTION OF DERIVATION TREES</h2>
+
+<p>Since we need to build these trees in the store of our machines, it makes sense to make them as small as possible without losing the equivalence to the derivation.</p>
+
+<p>The correctness of these reduction strategies consists in you showing how to recover the original derivation from the new tree.</p>
+
+<p>(Easy? Hard?)</p>
+
+<!-- Diagram here -->
+
+<!-- 30 -->
+
+<h2 id="full-reduction">FULL REDUCTION</h2>
+
+<p>No need to store terminals on trees.  Instead, label nodes with them.</p>
+
+<!-- Diagram here -->
+
+<p>becomes</p>
+
+<!-- Diagram here -->
+
+<p>from</p>
+
+<!-- Diagram here -->
+
+<!-- 31 -->
+
+<p>Let \( \enspace G = \{ N, T, P, s \} \)</p>
+
+<p>Let \( \enspace \alpha, \beta \in S^+ \quad and \quad n \in N \)</p>
+
+<p>\( G \) is SELF-EMBEDDING when there exists \( \enspace \alpha, \beta, n \enspace \) such that \( \enspace  n \Rightarrow^+ \alpha n \beta \)</p>
+
+<h3 id="proposition">Proposition</h3>
+
+<p>If \( G \) is not a self-embedding CFG, then \( L(G) \) is regular.</p>
+
+<p>Note this condition is sufficient but by no means necessary.</p>
+
+<p>This property allows us to isolate those parts of a grammar which are regular.</p>
+
+<!-- 32  -->
+
 </div>
     </div>
 </article>
