@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>L03 - Lexical Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
+  </head>
+  <body>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-md fixed-top mb-4 navbar-dark bg-dark" >
+    <div class="container">
+        <div class="navbar-brand">Kevin Wilson</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarList" aria-controls="navbarList" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarList">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav navbar-right">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/" >Home</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/history.html" >History</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/project.html" >Project</a>
+                </li>
+            
+            </ul>
+        </div>    <!-- /.navbar-collapse -->
+    </div>  <!-- /.container -->
+</nav>
+
+
+
+      <!-- End Navigation Bar -->
+      <!-- Content -->
+      <div class="container" id="projarticle-page">
+<article>
+     <header class='article-header'>
+        <div>
+          <div class='thumb'>
+            <div class='post-rubric'>
+            <div class='lecture-num'>Lecture 03</div>
+              <div class='post-title'>L03 - Lexical Analysis</div>
+              <div class='post-meta'>
+                <div class='tags'>
+                  
+                </div>
+              </div>   <!-- post-meta -->
+            </div>   <!-- post-rubric -->
+          </div>     <!-- thumb  -->
+            </div>  <!-- container --> 
+         <div class='clear'></div>   
+        <div class='description'>
+          Grouping the characters into words
+        </div>    <!-- description -->
+      </header>
+
+    <div class='article-post'>
+      <div><!-- 33 -->
+
+<p>Essentially an RG parser - but we don’t just want to ACCEPT sequence of characters as valid according to the grammar - we wish to perform some ACTIONS.</p>
+
+<ol>
+  <li>TO EACH WORD A SIGN</li>
+  <li>TO SOME WORDS A VALUE TOO</li>
+</ol>
+
+<h3 id="step-1">Step 1</h3>
+
+<p>EASY - HAVE AN INTEGER (SUCH AS A BCPL MANIFEST FOR EG) FOR EACH WORD.</p>
+
+<table border="0">
+ <thead>
+    <tr>
+      <th class="col1"></th>
+      <th class="col2"></th>
+      <th class="col3"></th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td>:= </td><td>s.assign </td><td> </td></tr>
+<tr><td>begin </td><td>s.begin </td><td> </td></tr>
+<tr><td>-&gt; </td><td>s.cond </td><td> </td></tr>
+<tr><td>= </td><td>s.equal </td><td> </td></tr>
+<tr><td>fred </td><td>s.equal </td><td> </td></tr>
+<tr><td>jill </td><td>s.equal </td><td> </td></tr>
+<tr><td>23 </td><td>s.number </td><td> </td></tr>
+</tbody>
+</table>
+
+<h3 id="step-2">Step 2</h3>
+
+<table class="L03P33" border="0">
+ <thead>
+    <tr>
+      <th class="col1"></th>
+      <th class="col2"></th>
+      <th class="col3"></th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td>s.number </td><td>the 'actual' value </td><td> </td></tr>
+<tr><td>s.name </td><td>symbol table pointer </td><td> </td></tr>
+<tr><td>s.string </td><td>pointer to 'real' string </td><td> </td></tr>
+</tbody>
+</table>
+
+<!-- 34 -->
+
+<h2 id="finite-automata">FINITE AUTOMATA</h2>
+
+<p>An FA or finite state machine FSM is a quintuple \( \{ S, I, O, f_s, f_o \} \) where:</p>
+
+<table class="L03P33" border="0">
+ <thead>
+    <tr>
+      <th class="col1"></th>
+      <th class="col2"></th>
+      <th class="col3"></th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td>\( S \) </td><td>finite set of states </td><td> </td></tr>
+<tr><td>\( I \) </td><td>input alphabet </td><td> </td></tr>
+<tr><td>\( O \) </td><td>output alphabet </td><td> </td></tr>
+<tr><td>\( f_s \) </td><td>\( I \times S \rightarrow S \) </td><td> </td></tr>
+<tr><td>\( f_o \) </td><td>\( I \times S \rightarrow O \) </td><td> </td></tr>
+</tbody>
+</table>
+
+<p>and the NEXT STATE and NEXT OUTPUT functions.</p>
+
+<p>There is a close relationship between FSM and RG as we shall now see.</p>
+
+<!-- 35 -->
+
+<h2 id="representation-of-fsm">REPRESENTATION OF FSM</h2>
+
+<h3 id="1-tabular">1. Tabular</h3>
+
+<table class="statetable" border="0">
+
+<tbody>
+<tr><td></td><td></td><td colspan="4">State</td></tr>
+<tr><td></td><td class="bl rl">f </td><td class="bl">A </td><td class="bl">B </td><td class="bl">C </td><td class="bl">D </td></tr>
+<tr><td rowspan="2">Input</td><td class="rl">0 </td><td>C </td><td>D </td><td>A </td><td>B </td></tr>
+<tr><td class="rl">1 </td><td>B </td><td>A </td><td>D </td><td>C </td></tr>
+
+</tbody>
+</table>
+
+<h3 id="2-circle--arrow">2. Circle &amp; Arrow</h3>
+
+<p><img class="centre" src="/assets/project/theory/L03P035A_FSM1.png" alt="Lecture 03 Image Page 35A" /></p>
+
+<p>Assuming A is the start and finish state, what input sequences does it accept (i.e. end up in A)?</p>
+
+<p>Can you write an RG to do the same?</p>
+
+<!-- 36 -->
+
+<h3 id="theorem">THEOREM</h3>
+
+<p>A grammar is RG if and only if its language can be accepted by a finite state machine.</p>
+
+<h3 id="proof">Proof</h3>
+
+<p>Roughly - show how to form a FSM from an RG and an RG from a FSM.</p>
+
+<p>Think and do!</p>
+
+<p>Represent the states by non-terminals, and ensure that the transitions between states are determined by the occurence of terminals.  Thus, for the FSM on the previous page:</p>
+
+<p>\( A \rightarrow 1B \; | \; 0C \)<br />
+\( B \rightarrow 1A \; | \; 0D \)<br />
+\( C \rightarrow 1D \; | \; 0A \)<br />
+\( D \rightarrow 1C \; | \; 0B \)</p>
+
+<!-- 37 -->
+
+<h3 id="example">EXAMPLE</h3>
+
+<p>Identifers as an RG.</p>
+
+<p>\( I \; \rightarrow \; \mathrm{a} \; | \; \ldots \; | \; \mathrm{z} \; | \; \mathrm{a}A \; | \; \ldots \; | \; \mathrm{z}A \)</p>
+
+<p>\( A \; \rightarrow \; \mathrm{a} \; | \; \ldots \; | \; \mathrm{z} \; | \; 0 \; | \; \ldots \; | \; 9 \; | \; \mathrm{a}A \; | \; \ldots \; | \; \mathrm{z}A \; | \; \mathrm{0}A \; | \; \ldots \; | \; \mathrm{9}A \)</p>
+
+<!-- Diagram -->
+
+<p><img class="centre" src="/assets/project/theory/L03P037A_FSM2.png" alt="Lecture 03 Image Page 37A" /></p>
+
+<table class="statetable" border="0">
+ <thead>
+    <tr>
+      <th class="col1"></th>
+      <th class="col2"></th>
+      <th class="col3"></th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td class="rl bl">NxtState </td> <td class="bl">\( I \) </td> <td class="bl">\( A \) </td></tr>
+<tr><td class="rl">a...z </td>    <td>\( A \) </td> <td>\( A \) </td></tr>
+<tr><td class="rl">0...9 </td>    <td>Error   </td> <td>\( A \) </td></tr>
+<tr><td class="rl">others </td>   <td>Error   </td> <td>Exit </td></tr>
+</tbody>
+</table>
+
+<p>FSM for this RG shown by the circle and arrow and tabular technique.</p>
+
+<!-- 38 -->
+
+<h2 id="implementation-of-lexical-analysers">IMPLEMENTATION OF LEXICAL ANALYSERS</h2>
+
+<p>The two diagrammatic representations of RG’s as FSM’s lead to natural implementations:</p>
+
+<p>C&amp;A: as a program</p>
+<ul>
+  <li>v. easy to program</li>
+  <li>individual CASE analysis</li>
+  <li>can be automated</li>
+  <li>( see CSC: LEXGEN.DOC )</li>
+</ul>
+
+<p>Tabular: as array and interpreter</p>
+<ul>
+  <li>can be stored very compactly</li>
+  <li>fast and general</li>
+  <li>can be automated</li>
+  <li>( see GRIES chapter 3 esp section 3.4 )</li>
+</ul>
+
+<p>Please read CHAPTER 4 OF BORNAT for more examples and details</p>
+
+<!-- 39 -->
+
+<p>Since you will see (and write) programmed lexical analysers let’s look at a table and interpreter.</p>
+
+<p>Technique: Add action ? to the table.</p>
+
+<table class="statetable" border="0">
+ <thead>
+    <tr>
+      <th class="col1"></th>
+      <th class="col2"></th>
+      <th class="col3"></th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td class="rl bl">NxtState and actions </td> <td class="bl">\( I \) </td> <td class="bl">\( A \) </td></tr>
+<tr><td class="rl">a...z </td>    <td>\( A \alpha \) </td> <td>\( A \alpha \) </td></tr>
+<tr><td class="rl">0...9 </td>    <td>Err \( \beta \)  </td> <td>\( A \alpha \) </td></tr>
+<tr><td class="rl">others </td>   <td>Err \( \beta \)  </td> <td>Stop \( \delta \) </td></tr>
+</tbody>
+</table>
+
+<p>Where \( \alpha, \beta, \delta \) are the following actions:</p>
+
+<p>\( \alpha \): Update namevector; update length; check length.</p>
+
+<p>\( \beta \): Report “Doesn’t start with a letter”.</p>
+
+<p>\( \delta \): Lookup and if necessary insert namevector in the symbol table.</p>
+
+<!-- 40 -->
+
+<h3 id="the-interpreter">THE INTERPRETER</h3>
+
+<pre>
+LET TableInterpreter( Table ) BE
+    {   LET State = Table( StartState )
+        {   LET Ch = Inch()
+            LET Entry = Table( State, Ch )
+            State := StatePart OF Entry
+            PERFORM( ActionPart OF Entry )
+            IF State = Stop THEN RETURN
+        } REPEAT
+    }
+</pre>
+
+</div>
+    </div>
+</article>
+</div>
+
+      <!-- End Content -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>

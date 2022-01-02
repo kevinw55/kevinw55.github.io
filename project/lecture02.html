@@ -624,8 +624,10 @@ Orange Arrow     - Continuation</p>
 <!-- 28 -->
 
 <!-- Diagram here -->
+<p><img class="centre" src="/assets/project/theory/L02P028A_Ambiguous1.png" alt="Lecture 02 Image Page 28A" /></p>
 
 <!-- Diagram here -->
+<p><img class="centre" src="/assets/project/theory/L02P028B_Ambiguous2.png" alt="Lecture 02 Image Page 28B" /></p>
 
 <p>3 + 4 * 2 = 11</p>
 
@@ -645,7 +647,15 @@ Orange Arrow     - Continuation</p>
 
 <p>(Easy? Hard?)</p>
 
-<!-- Diagram here -->
+<!-- Image -->
+<p><img class="centre" src="/assets/project/theory/L02P029A_Derivation1.png" alt="Lecture 02 Image Page 29A" /></p>
+
+<p>No point in saving the values in boxes.  Redundant.</p>
+
+<p>This is chain reduction.</p>
+
+<!-- Image -->
+<p><img class="centre" src="/assets/project/theory/L02P029B_Derivation2.png" alt="Lecture 02 Image Page 29B" /></p>
 
 <!-- 30 -->
 
@@ -654,14 +664,17 @@ Orange Arrow     - Continuation</p>
 <p>No need to store terminals on trees.  Instead, label nodes with them.</p>
 
 <!-- Diagram here -->
+<p><img class="centre" src="/assets/project/theory/L02P030A_FullReduction1.png" alt="Lecture 02 Image Page 30A" /></p>
 
 <p>becomes</p>
 
 <!-- Diagram here -->
+<p><img class="centre" src="/assets/project/theory/L02P030B_FullReduction2.png" alt="Lecture 02 Image Page 30B" /></p>
 
 <p>from</p>
 
 <!-- Diagram here -->
+<p><img class="centre" src="/assets/project/theory/L02P030C_FullReduction3.png" alt="Lecture 02 Image Page 30C" /></p>
 
 <!-- 31 -->
 
@@ -680,6 +693,34 @@ Orange Arrow     - Continuation</p>
 <p>This property allows us to isolate those parts of a grammar which are regular.</p>
 
 <!-- 32  -->
+
+<h2 id="regular-grammars">REGULAR GRAMMARS</h2>
+
+<p>In particular the so called MICROSYNTAX of languages which is concerned with the grouping of individual characters into words - identifiers, numbers, reserved words, operators, etc.</p>
+
+<h3 id="example-4">EXAMPLE</h3>
+
+<!-- Started using \; instead of \enspace -->
+
+<p>\( L \; \rightarrow \; \mathrm{a} \; | \; \ldots \; | \; \mathrm{z} \; | \; \mathrm{A} \; | \; \ldots \; | \; \mathrm{Z} \)</p>
+
+<p>\( N \; \rightarrow \; 0 \; | \; \ldots \; | \; 9 \)</p>
+
+<p>\( C \; \rightarrow \; + \; | \; - \; | \; &gt; \; | \; &lt; \; | \; = \)</p>
+
+<p>\( M \; \rightarrow \; L \; | \; N \; | \; - \)</p>
+
+<p>\( Iden \; \rightarrow \; L \; | \; Iden \; M  \)</p>
+
+<p>\( Numb \; \rightarrow \; N \; | \; Numb \; N \)</p>
+
+<p>This is a non-embedding CFG not a RG but can easily be written as such - Do it.</p>
+
+<p>\( Iden \; \rightarrow \; \mathrm{a} \; | \; \ldots \; | \; \mathrm{z} \; | \; \mathrm{A} \; | \; \ldots \; | \; \mathrm{Z} \; | \; \mathrm{a} \; M \; | \; \ldots \; | \; \mathrm{z} \; M \; | \; \mathrm{A} \; M \; | \; \ldots \; | \; \mathrm{Z} \; M  \)</p>
+
+<p>\( Num \; \rightarrow \; 0 \; | \; \ldots \; | \; 9 \; | \; 0 \; Num \; | \; \ldots \; | \; 9 \; Num \)</p>
+
+<p>\( M \; \rightarrow \; Iden \; | \; Num \; | \; - \)</p>
 
 </div>
     </div>

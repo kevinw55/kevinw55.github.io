@@ -1,0 +1,576 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>L04 - Syntax Analysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
+  </head>
+  <body>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-md fixed-top mb-4 navbar-dark bg-dark" >
+    <div class="container">
+        <div class="navbar-brand">Kevin Wilson</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarList" aria-controls="navbarList" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarList">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav navbar-right">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/" >Home</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/history.html" >History</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/project.html" >Project</a>
+                </li>
+            
+            </ul>
+        </div>    <!-- /.navbar-collapse -->
+    </div>  <!-- /.container -->
+</nav>
+
+
+
+      <!-- End Navigation Bar -->
+      <!-- Content -->
+      <div class="container" id="projarticle-page">
+<article>
+     <header class='article-header'>
+        <div>
+          <div class='thumb'>
+            <div class='post-rubric'>
+            <div class='lecture-num'>Lecture 04</div>
+              <div class='post-title'>L04 - Syntax Analysis</div>
+              <div class='post-meta'>
+                <div class='tags'>
+                  
+                </div>
+              </div>   <!-- post-meta -->
+            </div>   <!-- post-rubric -->
+          </div>     <!-- thumb  -->
+            </div>  <!-- container --> 
+         <div class='clear'></div>   
+        <div class='description'>
+          Checking the Grammar
+        </div>    <!-- description -->
+      </header>
+
+    <div class='article-post'>
+      <div><!-- 41 -->
+
+<h2 id="syntax-analysis">SYNTAX ANALYSIS</h2>
+
+<p>Given a CFG \( G \), and a string \( t^* \in T^* \) either construct a derivation tree for the derivation of \( t^* \) in CFG or reject \( t^* \) if \( t^* \) is not a sentence of \( G \).</p>
+
+<h3 id="problem">Problem</h3>
+
+<p>In general it is not possible to determine if every \( G \) is non-ambiguous but, luckily, it is possible to check that some \( G \) are ambiguity free - and we can use such \( G \) ‘s to define our languages.</p>
+
+<p>Thus the derivation tree will - if produced at all - be unique.</p>
+
+<!-- 42 -->
+
+<h2 id="strategies">STRATEGIES</h2>
+
+<p>1) We can adopt a PREDICTIVE approach.  Essentially expecting to recognise certain non-terminals and terminals starting, of course, with the start non-terminal (in PROGOL this is &lt;p&gt; - a program).  This is a TOP-DOWN approach.</p>
+
+<p>2) We can adopt a PATTERN DIRECTED approach.  Essentially we try to match subsequences of the input strings to r.h.s of productions and so reduce the string eventually to &lt;p&gt; - the start non-terminal.  This is a BOTTOM-UP approach.</p>
+
+<!-- 43 -->
+
+<h3 id="example">Example</h3>
+
+<p>\( A ::= T + T \; | \; T \)</p>
+
+<p>\( T ::= F * F \; | \; F \)</p>
+
+<p>\( F ::= I \; | \; ( A ) \)</p>
+
+<p>input stream</p>
+
+<p>\( I * ( I + I) \)</p>
+
+<h4 id="top-down">TOP DOWN</h4>
+
+<p>Try to parse \( \quad A \)<br />
+Try to parse \( \quad T \)<br />
+Try to parse \( \quad F * F \)<br />
+Try to parse \( \quad I * F \)<br />
+Try to parse \( \quad I * ( A ) \)<br />
+Try to parse \( \quad I * ( T + T ) \)<br />
+Try to parse \( \quad I * ( F + T ) \)<br />
+Try to parse \( \quad I * ( F + F ) \)<br />
+Try to parse \( \quad I * ( I + F ) \)<br />
+Try to parse \( \quad I * ( I + I ) \)</p>
+
+<p>Success!</p>
+
+<p>Notice that I was careful to try the ‘correct’ alternative at each point.</p>
+
+<!-- 44 -->
+
+<h4 id="bottom-up">BOTTOM UP</h4>
+
+<p>\( A ::= T + T^1 \; | \; T^2 \)</p>
+
+<p>\( T ::= F * F^3 \; | \; F^4 \)</p>
+
+<p>\( F ::= I^5 \; | \; ( A )^6 \)</p>
+
+<table id="p44" border="0">
+ <thead>
+    <tr>
+      <th class="col1"></th>
+      <th class="col2"></th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td> </td><td> </td></tr>
+<tr><td> \( I * ( I + I ) \)  </td><td>  </td></tr> 
+<tr><td> \( F * ( F + I ) \quad \) </td><td>  using 5 (twice)  </td></tr> 
+<tr><td> \( F * ( F + F ) \quad \) </td><td>  using 5  </td></tr> 
+<tr><td> \( F * ( T + F ) \quad \) </td><td>  using 4  </td></tr> 
+<tr><td> \( F * ( T + T ) \quad \) </td><td>  using 4  </td></tr> 
+<tr><td> \( F * ( A ) \qquad \) </td><td>  using 1  </td></tr> 
+<tr><td> \( F * F \qquad \) </td><td>  using 6  </td></tr> 
+<tr><td> \( T \quad \) </td><td>  using 3  </td></tr> 
+<tr><td> \( A \quad \) </td><td>  using 2  </td></tr>
+</tbody>
+</table>
+
+<p>Again notice that I chose the ‘correct’ reductions.</p>
+
+<p>Observe that using 4 instead of 1 on the 5th reduction would be fatal.</p>
+
+<p>You should begin to see that parsing is non-trivial!</p>
+
+<!-- 45 -->
+
+<h3 id="backtracking">BACKTRACKING</h3>
+
+<p>Since alternative productions allow us to replace some non-terminals by several different sequences of symbols.  We may need to BACKTRACK, in other words, when we realise we chose the wrong expansion (or reduction) and we go back and choose another.</p>
+
+<p>This was evident from the examples we went through earlier and it is very inconvenient.  We may need to restore a previous “state of the world”.</p>
+
+<ol>
+  <li>Destroy new bits of the parse tree</li>
+  <li>Restore input stream</li>
+  <li>Restore memory (???)</li>
+  <li>Request error messages back from the output file (???)</li>
+</ol>
+
+<p>It’s all a bit of a pain, in other words.</p>
+
+<p>Is there a way of avoiding backtracking?</p>
+
+<!-- 45a -->
+
+<h3 id="factoring">Factoring</h3>
+
+<p>One common problem is a series of productions whose RHS all start with the same terminal.</p>
+
+<p>\( P_1 \rightarrow \mathrm{t} \alpha \)</p>
+
+<p>\( P_1 \rightarrow \mathrm{t} \beta \)</p>
+
+<p>\( P_1 \rightarrow \mathrm{t} \delta \)</p>
+
+<p>\( P_1 \rightarrow \mathrm{t} \alpha \; | \; \mathrm{t} \beta \; | \; \mathrm{t} \delta \)</p>
+
+<p>New notation for “precisely one of”</p>
+
+<p>\( P_1 \rightarrow \mathrm{t} \; [ \; \alpha \; | \; \beta \; | \; \delta \; ] \)</p>
+
+<p>OR can write</p>
+
+<p>\( P_1 \rightarrow \mathrm{t} n \)</p>
+
+<p>\( n \rightarrow \; \alpha \; | \; \beta \; | \; \delta \)</p>
+
+<!-- 46 -->
+
+<p>Here is a rough intuition:</p>
+
+<p>If every alternative competing for the derivation begins ( or eventually begins) with a different terminal, then we would always know which expansion to make - moreover if we reach a failure then we really have failed - no need to backtrack.</p>
+
+<p>Making this formal is a task we undertake soon.</p>
+
+<p>First lets see why this situation leads to convenient analysis.</p>
+
+<!-- 47 -->
+
+<h3 id="top-down-recursive-descent-analysis">TOP DOWN RECURSIVE DESCENT ANALYSIS</h3>
+
+<pre><code>
+&lt;s&gt; ::= if &lt;e&gt; then &lt;s&gt; else &lt;s&gt;
+&lt;e&gt; ::= valof &lt;s&gt;
+
+</code></pre>
+
+<p>Assume that our ‘one-track’ condition holds.<br />
+Simply associate one procedure with each non-terminal and (roughly) ‘check’ for terminals:</p>
+
+<pre><code>
+proc s():   begin
+                checkfor( s.if );
+                e();
+                checkfor( s.then );
+                s();
+                checkfor( s.else );
+                s();
+            end
+            
+proc e():   begin
+                checkfor( s.valof );
+                s();
+            end
+            
+proc checkfor( x: int ):
+            begin
+                if x = symbol then 
+                    nextsymb()
+                else
+                    print( symbol," found where ", x, " expected")
+            end    
+                
+</code></pre>
+
+<!-- 48 -->
+
+<p>Note the MUTUAL recursion.</p>
+
+<p>We can add ACTIONS to our acceptor:</p>
+
+<pre><code>
+proc s(): node: begin
+                    node t1, t2;
+                    checkfor( s.if );
+                    t1 := e();
+                    checkfor( s.then );
+                    t2 := s();
+                    checkfor( s.else );
+                exit tree3( s.cond, t1, t2, s() );
+                end
+            
+proc e(): node: begin
+                    checkfor( s.valof );
+                    exit tree1( s.valof, s() );
+                end
+            
+proc tree3( p:type, t1, t2, t3: node ):node:
+            begin
+                node n:
+                n := newnode(4);
+                n^1 := p;
+                n^2 := t1;
+                n^3 := t2;
+                n^4 := t3;
+                exit n;
+            end    
+                
+</code></pre>
+
+<!-- 49 -->
+
+<p>There are other snags …</p>
+
+<pre><code>
+&lt; s &gt; ::= &lt; s &gt;; &lt; c &gt; \| &lt; c &gt;
+
+proc s():   begin
+                s();
+                :
+                :
+            end
+
+</code></pre>
+
+<p>ON A LEFT TO RIGHT PARSE, WE MUST AVOID LEFT RECURSION IN PRODUCTIONS.</p>
+
+<p>BUT…</p>
+<pre><code>
+&lt; s &gt; ::= &lt; b &gt;;
+&lt; b &gt; ::= &lt; c &gt;;
+&lt; c &gt; ::= &lt; s &gt;;
+
+</code></pre>
+
+<p>amounts to the same thing.</p>
+
+<p>WE MUST ALSO AVOID INDIRECT LEFT RECURSION IN SETS OF PRODUCTIONS.</p>
+
+<p>SOLUTIONS?</p>
+
+<!-- 50 -->
+
+<p>COULD TRANSLATE TO RIGHT RECURSIVE FORM.</p>
+
+<pre><code>
+&lt; E &gt; ::= &lt; E &gt; - &lt; T &gt;         goes to
+
+&lt; E &gt; ::= &lt; T &gt; - &lt; E &gt;         but ....
+
+</code></pre>
+
+<p>this fails with NON-COMMUTATIVE operators like minus and divide … eg</p>
+
+<p>( 2 - 4 ) - 3    \( \ne \)   ( 2 - ( 4 - 3 )</p>
+
+<p>But:</p>
+
+<p>Right recursion suggests TAIL recursion which suggests some kind of ITERATION.</p>
+
+<p>The above might be:</p>
+<pre><code>
+find a T;    { find a '-' or stop; find a T } repeat;
+
+</code></pre>
+
+<p>EXTEND BNF LANGUAGE:</p>
+
+<p>\( { \alpha }^* \) means zero or more \( \alpha \)</p>
+
+<p>So above is:</p>
+
+<pre><code>
+&lt; E &gt; ::= &lt; T &gt; { - T }*
+
+</code></pre>
+<p>Note our procedural form with ACTIONS could now return n-ary nodes rather than binary nodes…</p>
+
+<!-- 51 -->
+
+<h4 id="before">BEFORE</h4>
+
+<pre><code>
+proc e(): node:
+    begin
+        node t1;
+        t1 := t();
+        case symbol
+                :   
+                :
+            s.minus:
+                begin
+                    nextsymb();
+                    exit tree2(s.minus, t1, e() );
+                end
+                :
+                :
+                                
+</code></pre>
+
+<h4 id="after">AFTER</h4>
+
+<pre><code>
+proc e(): node:
+    begin
+      int mark;
+      mark := stack.pointer;
+      push( t() );
+      case symbol
+              :   
+              :
+           s.minus:
+               begin
+                    while symbol = s.minus do push( t() )
+                    exit treeN(s.minus, mark );
+                end
+                :
+                :
+                                
+</code></pre>
+
+<!-- 52 -->
+
+<p>So, to remove direct left recursion…</p>
+
+<p>&lt; S &gt; ::= &lt; S &gt; \( \; \alpha \; | \; \beta \)</p>
+
+<table id="p52" border="0">
+ <thead>
+    <tr>
+      <th class="col1">Number of recursions</th>
+      <th class="col2">Sentence</th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td class="col1">0 </td><td> \( S \Rightarrow \beta \) </td></tr>
+<tr><td class="col1">1 </td><td> \( S \Rightarrow S \alpha \Rightarrow \beta \alpha \)  </td></tr> 
+<tr><td class="col1">2 </td><td> \( S \Rightarrow S \alpha \Rightarrow S \alpha \alpha \Rightarrow \beta \alpha \alpha \)  </td></tr> 
+<tr><td class="col1">: </td><td> </td></tr> 
+<tr><td class="col1">n </td><td> \( S \Rightarrow^+ \beta \alpha^n \) </td></tr> 
+</tbody>
+</table>
+
+<p>We rewrite production as</p>
+
+<p>&lt; S &gt; ::= \( \beta \{ \alpha \}^* \)</p>
+
+<p>Remember that * means zero or more</p>
+
+<p>We haven’t dealt with indirect left recursion or even hinted on how to achieve ‘one-track’ conditions.</p>
+
+<!-- 53 -->
+
+<h3 id="some-mathematics">Some Mathematics</h3>
+
+<h4 id="product-of-sets">Product of Sets</h4>
+
+<p>Given \( A, B \) we define</p>
+
+<p>\( A \times B = { &lt;a, b&gt; \; | \; a \in A, \; b \in B } \)</p>
+
+<h4 id="powers-of-sets">Powers of Sets</h4>
+
+<p>Given \( A \) we set \( \quad A^1 = A \quad \&amp; \quad A^k = A^1 \times A^{k-1} \quad \) when \( k&gt;1 \)</p>
+
+<p>We also set \( A^0 = \{ \} \)</p>
+
+<h4 id="unions">Unions</h4>
+
+<p>Given \( A, B \) we define</p>
+
+<p>\( A \cup B = \{ x \; | \; x \in A \; or \; x \in B \} \)</p>
+
+<h4 id="relations">Relations</h4>
+
+<p>A relation \( R \) between sets \( A \) &amp; \( B \) is a subset of \( A \times B \)</p>
+
+<p>that is:</p>
+
+<p>\( R \subseteq A \times B \)</p>
+
+<h4 id="-operator">* Operator</h4>
+
+<p>Given A</p>
+
+<p>\( A^* = \bigcup\limits_{n=0}^{\infty}A^n \)</p>
+
+<!-- 54 -->
+
+<h4 id="transitive-closure">Transitive Closure</h4>
+
+<p>Given a relation \( R \subseteq S \times S \) for some \( S \) we define \( R^+ \subseteq S \times S \) to be as follows:</p>
+
+<p>\( &lt; s_1, s_2 &gt; \; \in R \Leftrightarrow \) there exists an n-sequence \( n \geqslant 0 \) where:</p>
+
+<p>\( &lt; s_1, s^1 &gt;, &lt; s^1, s^{11} &gt; ….. &lt; s^{1111….1}, s_2 &gt; \; c\in R \)</p>
+
+<h4 id="reflexive-closure">Reflexive Closure</h4>
+
+<p>Given a relation \( R \subseteq S \times S \) we form the reflexive closure \( R_r \) as follows:</p>
+
+<p>\( R_r = R \cup { &lt; s, s &gt; \; | \; s \in S } \)</p>
+
+<p>We write \( R^* \) for the reflexive and transitive closure.</p>
+
+<p>Compare this with the Formal Language theory relation \( \Rightarrow \)</p>
+
+<p>( recall \( \Rightarrow^+ \) and \( \Rightarrow^* \) )</p>
+
+<!-- 55 -->
+
+<p>If \( \; R \subseteq S \times S \; \) is a relation then \( \; R(s) = \{ \; t \; | \; &lt;s,t&gt; \; \in R \;  \} \; \)</p>
+
+<p>Now some important relations on \( S = N \cup T \) (i.e. the SYMBOLS of a grammar )</p>
+
+<h3 id="first--subseteq-n-times-s-">FIRST \( \subseteq N \times S \)</h3>
+
+<p>FIRST( \( \eta \) ) is the set of symbols starting alternatives of \( \eta \in N \) in the productions.</p>
+
+<h3 id="last--subseteq-n-times-s-">LAST \( \subseteq N \times S \)</h3>
+
+<p>LAST( \( \eta \) )  is the set of symbols finishing alternatives of \( \eta \in N \) in the productions.</p>
+
+<h3 id="follow--subseteq-n-times-s-">FOLLOW \( \subseteq N \times S \)</h3>
+
+<p>FOLLOW( \( \eta \) )  is the set of symbols following  \( \eta \in N \) in the productions.</p>
+
+<!-- 56 -->
+
+<h3 id="example-1">Example</h3>
+
+<p>&lt; S &gt; ::= &lt; E &gt;. | + &lt; E &gt;. | -&lt; E &gt;.</p>
+
+<p>&lt; E &gt; ::= &lt; T &gt; [ + &lt; T &gt; ] *</p>
+
+<p>&lt; T &gt; ::= &lt; F &gt; [ * &lt; F &gt; ] *</p>
+
+<p>&lt; F &gt; ::= ( &lt; E &gt; ) |  i  |  n</p>
+
+<table id="p56" border="1">
+ <thead>
+    <tr>
+      <th class="col1">SYMBOL</th>
+      <th class="col2">FIRST</th>
+      <th class="col3">LAST</th>
+      <th class="col4">FOLLOW</th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td class="col1">S </td><td>E + - </td><td>. </td><td>{ } </td></tr>
+<tr><td class="col1">E </td><td>T </td><td>T </td><td>. ) </td></tr>
+<tr><td class="col1">T </td><td>F </td><td>F </td><td>+ </td></tr>
+<tr><td class="col1">F </td><td>( i n </td><td>) i n </td><td>* </td></tr>
+
+</tbody>
+</table>
+
+<!-- 57 -->
+
+<p>Note: <br />
+We have direct left recursion if, for any \( \eta \in N, \eta \in FIRST( \eta ) \)</p>
+
+<table id="p57" border="0">
+ <thead>
+    <tr>
+      <th class="col1">SYMBOL</th>
+      <th class="col2">FIRST\(^+ \) </th>
+    </tr>
+  </thead>
+<tbody>
+<tr><td class="col1">S </td><td>E + - F ( i n </td></tr>
+<tr><td class="col1">E </td><td>T F ( i n </td></tr>
+<tr><td class="col1">T </td><td>F ( i n</td></tr>
+<tr><td class="col1">F </td><td>( i n </td></tr>
+
+</tbody>
+</table>
+
+<p>Note:<br />
+We have indirect left recursion if, for any \( \eta \in N, \eta \in FIRST^+( \eta ) \)</p>
+
+<p>There is an algorithm for computing closures called WARSHALL’S ALGORITHM.</p>
+
+<p>See Bornat p273 for a description and Pascal version.</p>
+
+<!-- 57a -->
+
+</div>
+    </div>
+</article>
+</div>
+
+      <!-- End Content -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>

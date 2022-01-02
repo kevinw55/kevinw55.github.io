@@ -88,7 +88,7 @@ h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 
 
 #blogpost-page code { color: #000000; font-family: monospace; font-size: 1em; }
 
-#projarticle-page { font-size: 16px; /* The following styles are nested inside */ }
+#projarticle-page { font-size: 16px; /* The following styles are nested inside */ /* & table#p56 .col1 { width: 15%; text-align: center } & table#p56 th.col2 { width: 15%; text-align: left } & table#p56 th.col3 { width: 15%; text-align: left } & table#p56 th.col4 { width: 15%; text-align: left } */ }
 
 #projarticle-page .lecture-num { font-size: 1em; }
 
@@ -117,5 +117,33 @@ h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 
 #projarticle-page th.col1, #projarticle-page th.col2 { width: 15%; }
 
 #projarticle-page th.col3 { width: 70%; /* Not necessary, since only 70% width remains */ }
+
+#projarticle-page table.statetable th.col1 { padding: 0em 3em 0em 3em; }
+
+#projarticle-page table.statetable th.col2 { width: 25%; }
+
+#projarticle-page table.statetable { width: 20em; font-family: serif; font-size: 14pt; text-align: center; }
+
+#projarticle-page table.statetable .bl { border-bottom: 2px solid black; }
+
+#projarticle-page table.statetable .rl { border-right: 2px solid black; }
+
+#projarticle-page img { margin: 2em 0em 2em 0em; }
+
+#projarticle-page table#p44 { text-align: left; }
+
+#projarticle-page table#p44 th.col2 { width: 50%; }
+
+#projarticle-page table#p52 .col1 { width: 15%; text-align: center; }
+
+#projarticle-page table#p52 th.col2 { width: 70%; text-align: left; }
+
+#projarticle-page table#p56 { width: 50%; text-align: center; }
+
+#projarticle-page table#p56 th { width: 25%; }
+
+#projarticle-page table#p57 .col1 { width: 15%; text-align: center; }
+
+#projarticle-page table#p57 th.col2 { width: 70%; text-align: left; }
 
 /*# sourceMappingURL=styles.css.map */
