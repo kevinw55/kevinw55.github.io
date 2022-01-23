@@ -559,6 +559,191 @@ We have indirect left recursion if, for any \( \eta \in N, \eta \in FIRST^+( \et
 
 <!-- 57a -->
 
+<h2 id="warshalls-algorithm">WARSHALL’S ALGORITHM</h2>
+
+<p>\( n = | N | \qquad s = | S | \qquad ( S = N \cup T ) \)</p>
+
+<pre><code>
+procedure WARSHALL( var F: array[1..n] of set of 1..s)
+    var sym, row: 1..n;
+        begin for sym := 1 to n do
+                for row := 1 to n do
+                    if sym in F[row] then
+                        F[row] := F[row] &cup; F[sym]
+        end
+        
+</code></pre>
+
+<p>This treats an indexed array of symbol sets.</p>
+
+<p>Can also do with bit matrices…</p>
+
+<!-- 58 -->
+
+<h2 id="bit-matrix-approach">BIT MATRIX APPROACH</h2>
+
+<p>Using same grammar as before:</p>
+
+<p>FIRST</p>
+
+<table id="p58" border="0">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">S</th>
+      <th class="bl">E</th>
+      <th class="bl">T</th>
+      <th class="bl">F</th>
+      <th class="bl">+</th>
+      <th class="bl">-</th>
+      <th class="bl">*</th>
+      <th class="bl">(</th>
+      <th class="bl">)</th>
+      <th class="bl">i</th>
+      <th class="bl">n</th>
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">S </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+</tr>
+<tr>
+    <td class="rl">E </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+</tr>
+<tr>
+    <td class="rl">T </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+</tr>
+<tr>
+    <td class="rl">F </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>1 </td>
+</tr>
+</tbody>
+</table>
+
+<p>Whenever \( \mathrm{ \  \eta \  FIRST \  \eta’ \  } \) replaces row of \( \eta \) with row of \( \eta \) '‘ORed'’ with row of \( \eta’ \) (since each row can be a single word, this can be very quick!! )</p>
+
+<p>FIRST\(^+\)</p>
+
+<table id="p58" border="0">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">S</th>
+      <th class="bl">E</th>
+      <th class="bl">T</th>
+      <th class="bl">F</th>
+      <th class="bl">+</th>
+      <th class="bl">-</th>
+      <th class="bl">*</th>
+      <th class="bl">(</th>
+      <th class="bl">)</th>
+      <th class="bl">i</th>
+      <th class="bl">n</th>
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">S </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>1 </td>
+    <td>1 </td>
+    <td>1 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>1 </td>
+</tr>
+<tr>
+    <td class="rl">E </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>1 </td>
+</tr>
+<tr>
+    <td class="rl">T </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>1 </td>
+</tr>
+<tr>
+    <td class="rl">F </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>0 </td>
+    <td>1 </td>
+    <td>1 </td>
+</tr>
+</tbody>
+</table>
+
 </div>
     </div>
 </article>
