@@ -90,7 +90,7 @@
 
 <p>Having said that, the standard arithmetic and operators are provided - for example, the addition operator (+) interprets the bit patterns as integers, and produces a bit pattern that can also be interpreted as an integer.  But the compiler does no type checking.  That means that it is possible to write a program which will, for example, multiply an integer with a Boolean value and interpret the result as an ASCII code.  This gives the programmer a lot more freedom and flexibility, but it also means that they have to be more careful.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// First BCPL program
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// First BCPL program
 
 GET "LIBHDR"
 LET START() BE
@@ -143,7 +143,7 @@ LET START() BE
 
 <p>and allows user-defined procedures and functions.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// This program asks the user for a sequence of numbers
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// This program asks the user for a sequence of numbers
 // and calculates the factorial of each one
     
 GET "LIBHDR"
@@ -177,7 +177,7 @@ LET START() BE
 
 <p>The only data structure the language provides is a one-dimensional array called a vector, which is accessed by using the ! operator.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// This program reads in 10 numbers into an array and prints them out in reverse order
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// This program reads in 10 numbers into an array and prints them out in reverse order
             
 GET "LIBHDR"
 LET START() BE
@@ -207,7 +207,7 @@ LET START() BE
 
 <p>In order to facilitate that, BCPL provides the operators @ and ! which will interpret a bit pattern as a storage address - in other words, as a pointer.  This allows indirection to be used, and enables the programmer to build more complex data structures.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET "LIBHDR"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET "LIBHDR"
 LET START() BE
     $(
         LET v = 42

@@ -142,7 +142,720 @@ Bornat: chap 17</p>
 
 <p>Let \( x, y \in S \) then:</p>
 
-<p>\( x \textrm{&lt;M&gt;} y \Longleftrightarrow def \exist p \in P such that p = n \rightarrow h_1 \dots h_n and for some</p>
+<p>\( x \textrm{&lt;M&gt;} y \Longleftrightarrow \textrm{def} \quad \exists p \in P \) such that \( p = n \rightarrow h_1 \dots h_n \) and for some \( i \le i \le n \quad h_i = x  \) and  \( h_{i+1} = y  \)</p>
+
+<p>THAT IS: x and y are consecutive symbols on the RHS of some production.</p>
+
+<!-- 71 -->
+
+<h2 id="definition-of--1">Definition of <L></L></h2>
+
+<p>Again, consider:</p>
+
+<p>\( a \textrm{&lt;L&gt;} h_1 \textrm{&lt;M&gt;} \dots \textrm{&lt;M&gt;} h_n \textrm{&lt;R&gt;} b \)</p>
+
+<p>give \( h \rightarrow h_1 \dots h_n \) after reduction we get:</p>
+
+<p>\( a ? h ? b \)</p>
+
+<p>and eventually the following exists:</p>
+
+<!-- Diagram -->
+
+<p>i.e. a production</p>
+
+<p>\( A \rightarrow \alpha a H_i \beta \)</p>
+
+<p>where</p>
+
+<p>\( A, H_i \exists N, \alpha, \beta \exists S^*, a, b \exists S \) so:</p>
+
+<p>\( a \textrm{&lt;L&gt;} h \Longleftrightarrow \exists p \in P \) such that \( p = A \rightarrow \alpha a H_i \beta \) with \( H_i \Rightarrow^+ h \gamma \) for some \( \gamma \leftarrow S^* \)</p>
+
+<p>that is: given a production \( A \rightarrow \alpha a H_i \beta \quad a \textrm{&lt;L&gt;} h \)</p>
+
+<p>whenever \(h \in FIRST^+(H_i)  \)</p>
+
+<!-- 72 -->
+
+<!-- Diagram -->
+
+<p>1 - Pick out handles \( G \) left of \( h_1 \)</p>
+
+<p>2 - Pick out handles \( H \) right of \( g_n \)</p>
+
+<p>3 - Eventually pick production:</p>
+
+<p>\( A \rightarrow \alpha G_i H; \beta \quad \)  so:</p>
+
+<p>\( g \textrm{&lt;R&gt;} h \Longleftrightarrow \exists p \in P \)</p>
+
+<p>such that:</p>
+
+<p>1 - \( \quad A \rightarrow \alpha G_i h \beta \quad \textrm{ with } \quad G_i \Rightarrow^+ \gamma g \)</p>
+
+<p>i.e \( \quad g \space \exists \space LAST^+(G_i) \)</p>
+
+<p>2 - \( \quad A \rightarrow \alpha G_i H_i \beta \quad \textrm{ with } \quad G_i \Rightarrow^+ \gamma g \quad  \textrm{ and } \quad H_j \Rightarrow^+ h \delta \)</p>
+
+<p>i.e \( \quad g \space \exists \space LAST^+(G_i) \quad \textrm{ and } \quad h \space \exists \space FIRST^+(H_j) \)</p>
+
+<!-- 73 -->
+
+<h2 id="summary">SUMMARY</h2>
+
+<p>To define all the relations set the following for all productions and pairs of adjacent symbols in them:</p>
+
+<p>Suppose</p>
+
+<p>\( n \rightarrow \dots XY \dots \)</p>
+
+<p>set</p>
+
+<p>\( X \textrm{&lt;M&gt;} Y \)</p>
+
+<p>\( X \textrm{&lt;L&gt;} FIRST^+(Y)  \)</p>
+
+<p>\( LAST^+(X) \textrm{&lt;R&gt;} FIRST^*(Y)  \)</p>
+
+<p>We get the * from the two cases above.</p>
+
+<h4 id="other-notations">Other notations</h4>
+
+<p>\( \textrm{&lt;L&gt;} \quad \textrm{&lt;M&gt;} \quad \textrm{&lt;R&gt;} \)</p>
+
+<p>\( \lessdot \quad \doteq \quad \gtrdot  \)</p>
+
+<!-- 74 -->
+
+<h2 id="exercise">Exercise</h2>
+
+<p>\( E \rightarrow T \space | \space E + T \)</p>
+
+<p>\( T \rightarrow F \space | \space E \times T \)</p>
+
+<p>\( F \rightarrow I \space | \space ( E ) \)</p>
+
+<table id="p74" class="prectable" border="1">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">E</th>
+      <th class="bl">T</th>
+      <th class="bl">F</th>
+      <th class="bl">I</th>
+      <th class="bl">)</th>
+      <th class="bl">*</th>
+      <th class="bl">+</th>
+      <th class="bl">(</th>
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">E </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">T </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">F </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">I </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">) </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">* </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">+ </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">( </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="firstly">Firstly</h4>
+
+<p>Compute FIRST+, FIRST*, LAST+ for each symbol.</p>
+
+<h4 id="secondly">Secondly</h4>
+
+<p>Use the summary above to fill in the array.</p>
+
+<!-- 74a -->
+
+<h2 id="answer">ANSWER</h2>
+
+<table id="p74" class="prectable" border="1">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">E</th>
+      <th class="bl">T</th>
+      <th class="bl">F</th>
+      <th class="bl">I</th>
+      <th class="bl">)</th>
+      <th class="bl">*</th>
+      <th class="bl">+</th>
+      <th class="bl">(</th>
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">E </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \doteq \) </td>
+    <td> </td>
+    <td> \( \doteq \) </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">T </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \gtrdot \) </td>
+    <td> \( \doteq \) </td>
+    <td> \( \gtrdot \) </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">F </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \gtrdot \)  </td>
+    <td> \( \gtrdot \) </td>
+    <td> \( \gtrdot \) </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">I </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \gtrdot \)  </td>
+    <td> \( \gtrdot \) </td>
+    <td> \( \gtrdot \) </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">) </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \gtrdot \) </td>
+    <td> \( \gtrdot \) </td>
+    <td> \( \gtrdot \)  </td>
+    <td> \( \doteq \) </td>
+</tr>
+<tr>
+    <td class="rl">* </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \doteq \) </td>
+    <td> \( \lessdot \) </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td>  \( \lessdot \) </td>
+</tr>
+<tr>
+    <td class="rl">+ </td>
+    <td> </td>
+    <td> \( \doteq \) </td>
+    <td>  \( \lessdot \) </td>
+    <td>  \( \lessdot \) </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td>  \( \lessdot \) </td>
+</tr>
+<tr>
+    <td class="rl">( </td>
+    <td>  \( \doteq \) </td>
+    <td> \( \lessdot \) </td>
+    <td> \( \lessdot \) </td>
+    <td> \( \lessdot \) </td>
+    <td>  \( \doteq \) </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \lessdot \) </td>
+</tr>
+</tbody>
+</table>
+
+<!-- 75 ########################################################################################### -->
+
+<h2 id="example">Example</h2>
+
+<p>\( A \rightarrow B \space \sim \space B \)</p>
+
+<p>\( B \rightarrow (B) \space | \space b \)</p>
+
+<table id="p74" class="prectable" border="1">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">A</th>
+      <th class="bl">B</th>
+      <th class="bl">b</th>
+      <th class="bl">(</th>
+      <th class="bl">)</th>
+      <th class="bl"> \( \sim \) </th>
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">A </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">B </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">b </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">( </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">) </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl"> \( \sim \) </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+
+</tbody>
+</table>
+
+<p>\( F^+(A) = \)</p>
+
+<p>\( F^*(A) = \)</p>
+
+<p>\( L^+(A) = \)</p>
+
+<p>\( F^+(B) = \)</p>
+
+<p>\( F^*(B) = \)</p>
+
+<p>\( L^+(B) = \)</p>
+
+<!-- 75a ########################################################################################### -->
+
+<h2 id="answer-1">Answer</h2>
+
+<p>\( A \rightarrow B \space \sim \space B \)</p>
+
+<p>\( B \rightarrow (B) \space | \space b \)</p>
+
+<table id="p74" class="prectable" border="1">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">A</th>
+      <th class="bl">B</th>
+      <th class="bl">b</th>
+      <th class="bl">(</th>
+      <th class="bl">)</th>
+      <th class="bl"> \( \sim \) </th>
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">A </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">B </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \doteq \) </td>
+    <td> \( \doteq \) </td>
+</tr>
+<tr>
+    <td class="rl">b </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \gtrdot \) </td>
+    <td> \( \gtrdot \)  </td>
+</tr>
+<tr>
+    <td class="rl">( </td>
+    <td> </td>
+    <td> \( \doteq \)  </td>
+    <td> \( \lessdot \) </td>
+    <td> \( \lessdot \) </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">) </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \gtrdot \) </td>
+    <td> \( \gtrdot \) </td>
+</tr>
+<tr>
+    <td class="rl"> \( \sim \) </td>
+    <td> </td>
+    <td> </td>
+    <td> \( \lessdot \) </td>
+    <td> \( \lessdot \)  </td>
+    <td> </td>
+    <td> </td>
+</tr>
+
+</tbody>
+</table>
+
+<p>\( F^+(A) = \{ \space B \space b \space ( \space \} \)</p>
+
+<p>\( F^*(A) = \{ \space A \space B \space b \space ( \space \} \)</p>
+
+<p>\( L^+(A) = \{ \space B \space ) \space b \space \} \)</p>
+
+<p>\( F^+(B) = \{ \space ( \space b \space \} \)</p>
+
+<p>\( F^*(B) = \{ \space B \space ( \space b \space \} \)</p>
+
+<p>\( L^+(B) = \{ \space ) \space b \space \} \)</p>
+
+<!-- 76 -->
+
+<h2 id="example-bottom-up-parse-using-precedence-grammar">Example bottom-up parse using precedence grammar</h2>
+
+<h4 id="problem">Problem</h4>
+<p>Given grammar and ((b))~(b)<br />
+Produce derivation tree</p>
+
+<h4 id="solution">Solution</h4>
+<p>Prepare relations<br />
+Do canonical reduction</p>
+
+<p>\( \vdash \space \lessdot ( \lessdot ( \lessdot \underbrace{b} \gtrdot ) \gtrdot ) \gtrdot \space \sim \space \lessdot ( \lessdot b \gtrdot ) \gtrdot \space \dashv \)</p>
+
+<p>\( \vdash \space \lessdot ( \lessdot \underbrace{ ( \doteq B \doteq ) } \gtrdot ) \gtrdot \space \sim \space \lessdot ( \lessdot b \gtrdot ) \gtrdot \space \dashv \)</p>
+
+<p>\( \vdash \space \lessdot \underbrace{ ( \doteq B \doteq ) }  \gtrdot \space \sim \space \lessdot ( \lessdot b \gtrdot ) \gtrdot \space \dashv \)</p>
+
+<p>\( \vdash \space \lessdot B \doteq \space \sim \space \lessdot ( \lessdot \underbrace{ b } \gtrdot ) \gtrdot \space \dashv \)</p>
+
+<p>\( \vdash \space \lessdot B \doteq \space \sim \space \lessdot \underbrace{  ( \doteq B \doteq ) } \gtrdot \space \dashv \)</p>
+
+<p>\( \vdash \space \lessdot \underbrace{ B \doteq \space \sim \space  \doteq B  \gtrdot } \space \dashv \)</p>
+
+<p>\( \vdash \space \lessdot A  \gtrdot  \space \dashv \)</p>
+
+<p>The handle is underlined.<br />
+Reversing sequence yields the derivation:</p>
+
+<p>\( A \Rightarrow B \sim B \)</p>
+
+<p>\( A \Rightarrow B \sim ( B ) \)</p>
+
+<p>\( A \Rightarrow B \sim ( b ) \)</p>
+
+<p>\( A \Rightarrow ( B ) \sim ( b ) \)</p>
+
+<p>\( A \Rightarrow (( B )) \sim ( b ) \)</p>
+
+<p>\( A \Rightarrow (( b )) \sim ( b ) \)</p>
+
+<!-- 77 -->
+
+<h2 id="exercises">Exercises</h2>
+
+<ol>
+  <li>
+    <p>Complete exercise tables on previous pages</p>
+  </li>
+  <li>
+    <p>Show in detail the canonical parse of \( ( I + I ) * I \) and \( (( I + I * I ) + I ) * I  \)</p>
+  </li>
+  <li>
+    <p>Write out the corresponding derivations from \( E \Rightarrow \dots \)</p>
+  </li>
+  <li>
+    <p>Sketch the parse trees that correspond.</p>
+  </li>
+  <li>
+    <p>Think about programming the method.</p>
+  </li>
+</ol>
+
+<!-- 78 -->
+
+<h3 id="representing--lessdot-quad-doteq-quad--gtrdot---as-functions">Representing \( \lessdot \quad \doteq \quad  \gtrdot  \) as functions</h3>
+
+<p>For efficiencies sake we try to represent relations by two functions instead of a table.</p>
+
+<p>\( f, g : X \rightarrow N  (S = N \cup T ) \)</p>
+
+<p>\( x \lessdot y \Leftrightarrow fx &lt; gy \)</p>
+
+<p>\( x \doteq y \Leftrightarrow fx = gy \)</p>
+
+<p>\( x \gtrdot y \Leftrightarrow fx &gt; gy \)</p>
+
+<h4 id="algorithm">Algorithm</h4>
+
+<p>for all \( s \in S \) , set \( fs = gs = 0 \)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ for all pairs x,y do
+
+    if x .&gt; y &amp; fx &lt;= gy 
+                    inc (fx)
+
+    if x &lt;. y &amp; fx &gt;= gy 
+                    inc (gy)
+
+    if x =. y &amp; fx != gy 
+                    inc (min (fx,gy))
+} repeatwhile increments occur
+
+</code></pre></div></div>
+
+<p>This doesn’t always work !….</p>
+
+<!-- 79 -->
+
+<p>Consider …..</p>
+
+<table id="p79">
+<tr><td></td><td>b</td><td>d</td></tr>
+<tr><td>a</td><td>\( \lessdot \)</td><td>\( \gtrdot \)</td></tr>
+<tr><td>c</td><td>\( \gtrdot \)</td><td>\( \lessdot \)</td></tr>
+</table>
+
+<pre>
+f(a) &lt; g(b)
+        g(b) &lt; f(c)
+                f(c) &lt; g(d)
+                        g(d) &lt; f(a)
+</pre>
+
+<p>suggests that:  f(a) &lt; f(a)</p>
+
+<p>?</p>
+
+<!-- 79a -->
+
+<h3 id="implementation">Implementation</h3>
+
+<h4 id="tables">Tables</h4>
+
+<p>Need 2 bits</p>
+
+<table id="p79a1">
+<tr><td>00</td><td>None</td></tr>
+<tr><td>01</td><td>\( \lessdot \)</td></tr>
+<tr><td>10</td><td>\( \doteq \)</td></tr>
+<tr><td>11</td><td>\( \gtrdot \)</td></tr>
+</table>
+
+<p>for \( n \) symbols, need \( 2 \times n^2 \) bits</p>
+
+<h4 id="functions">Functions</h4>
+
+<p>Require \( n \times log_2(n) \) bits</p>
+
+<p>Say \( n = 2^8 = 256 \)</p>
+
+<table id="79a2">
+<tr><td></td>           <td></td>           <td>PDP10</td>      <td>Z80</td>        </tr>
+<tr><td>Table</td>      <td>131072 bits</td><td>3640 words</td> <td>16384 bytes</td></tr>
+<tr><td>Function</td>   <td>2048 bits</td>  <td>~57 words</td>  <td>256 bytes</td>  </tr>
+</table>
+
+<p>If you can make f and g it’s best to do so.</p>
+
+<!-- 80 -->
+
+<h2 id="grammar-hacking-for-precedence-grammars">Grammar Hacking for Precedence Grammars</h2>
+
+<p>Detection is EASY!</p>
+
+<p>Removal is HARD!</p>
+
+<p>Gries says:</p>
+
+<p>“It takes an experienced person a long time to manipulate a grammar into a P.G.”</p>
+
+<h4 id="left-recursion">Left Recursion</h4>
+<p>Easy to find a cure…</p>
+
+<p>\( N \rightarrow \dots x Y \dots \quad x \doteq Y \)</p>
+
+<p>\( Y \rightarrow Y \dots    \quad x \lessdot Y \quad CLASH! \)</p>
+
+<h4 id="solution-is-stratification">Solution is stratification</h4>
+
+<p>\( N \rightarrow \dots x Y’ \dots  \)</p>
+
+<p>\( Y’ \rightarrow Y  \)</p>
+
+<p>\( Y \rightarrow Y \dots \)</p>
+
+<p>this increases the number of non-terms and thus increases the size of the matrix.</p>
+
+<!-- 81 -->
+
+<h3 id="exercise-1">Exercise</h3>
+
+<p>In the previous exercise you have:</p>
+
+<p>\( + \doteq T, \quad + \lessdot T, \quad ( \doteq E, \quad ( \lessdot E \)</p>
+
+<p>Cure the problem using stratification.</p>
+
+<p>Construct functions f &amp; g to replace the matrix.</p>
+
+<p>HINT: Two stratifications are required.</p>
+
+<!-- 82 and 83 were overlays on page 74 and not included -->
+
+<!-- 84 -->
+
+<h4 id="preparatory-steps-do-not-use-the-precedence-">Preparatory steps do not use the precedence …</h4>
+
+<p>Parse:  a + b * c</p>
+
+<p>Handles are …</p>
+
+<p>\( I \rightarrow a \qquad \) Lex<br />
+\( F \rightarrow I \qquad \) Main step<br />
+\( T \rightarrow F \qquad \) Preparatory<br />
+\( E \rightarrow T \qquad \) Preparatory<br />
+\( I \rightarrow b \qquad \) Lex<br />
+\( F \rightarrow I \qquad \) Main step<br />
+\( T \rightarrow F \qquad \) Preparatory<br />
+\( I \rightarrow c \qquad \) Lex<br />
+\( F \rightarrow I \qquad \) Main<br />
+\( T \rightarrow F \qquad \) Preparatory<br />
+\( T \rightarrow T * F \qquad \) Main step<br />
+\( E \rightarrow E + T \qquad \) Main step</p>
 
 </div>
     </div>
