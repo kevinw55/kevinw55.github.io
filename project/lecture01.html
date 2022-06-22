@@ -100,18 +100,18 @@
 
 <p>For example, if the source files begins as follows:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>begin
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>begin
     int x, y;
 </code></pre></div></div>
 
 <p>it will be read in to the lexical analyser as a stream of characters, like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'b' 'e' 'g' 'i' 'n' 'i' 'n' 't' 'x' ',' 'y' ';'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'b' 'e' 'g' 'i' 'n' 'i' 'n' 't' 'x' ',' 'y' ';'
 </code></pre></div></div>
 
 <p>then the lexical analyser might produce a set of tokens:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s.begin  s.int  s.name  s.comma  s.name  s.semicolon
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s.begin  s.int  s.name  s.comma  s.name  s.semicolon
 </code></pre></div></div>
 
 <p>these are named constants which represent integer values.</p>

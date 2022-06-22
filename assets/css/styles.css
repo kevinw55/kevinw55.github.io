@@ -1,171 +1,316 @@
-.current { color: green; }
+.current {
+  color: green; }
 
 /* To make sure body clears the menu bar */
-body { padding-top: 70px; }
+body {
+  padding-top: 70px; }
 
-h1#title { border: 1px solid black; padding: 1rem 2rem 1rem 2rem; font-weight: bold; }
+h1#title {
+  border: 1px solid black;
+  padding: 1rem 2rem 1rem 2rem;
+  font-weight: bold; }
 
-#left { background-color: red; border: 1px solid black; padding: 0.5rem 1rem 0.5rem 1rem; height: 6rem; }
+#left {
+  background-color: red;
+  border: 1px solid black;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  height: 6rem; }
 
-#right { border: 1px solid black; padding: 0.5rem 1rem 0.5rem 1rem; min-height: 6rem; }
+#right {
+  border: 1px solid black;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  min-height: 6rem; }
 
-h3.category_header { background-color: blue; color: white; padding: 0.5rem 1rem 0.5rem 1rem; border: solid 1px grey; margin-bottom: 1rem; margin-top: 1rem; box-sizing: border-box; }
+h3.category_header {
+  background-color: blue;
+  color: white;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: solid 1px grey;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  box-sizing: border-box; }
 
-.post-list-header { background-color: light-grey; padding: 0.75rem 1.25rem; margin-bottom: 0; border-bottom: 1px solid black; }
+.post-list-header {
+  background-color: light-grey;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid black; }
 
-.row { margin-left: -15px; margin-right: -15px; }
+.row {
+  margin-left: -15px;
+  margin-right: -15px; }
 
-.post-list-box { border: 1px solid black; margin-bottom: 1rem; }
+.post-list-box {
+  border: 1px solid black;
+  margin-bottom: 1rem; }
 
-.post-list-intro { border-bottom: 1px solid black; padding: 1rem; }
+.post-list-intro {
+  border-bottom: 1px solid black;
+  padding: 1rem; }
 
 /* Bootstrap seems to add 1rem margin at bottom of .post-list */
 /* This counteracts it */
-.post-list-body { padding: 0.5rem 1rem 1rem 1rem; }
+.post-list-body {
+  padding: 0.5rem 1rem 1rem 1rem; }
 
-.post-list-body .container .row { border: 1px solid red; }
+.post-list-body .container .row {
+  border: 1px solid red; }
 
-.post-list-body .title { font-weight: bold; margin-bottom: 0.5rem; margin-top: 0.5rem; }
+.post-list-body .title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem; }
 
-.post-list { border: 1px solid blue; margin-bottom: 0rem; margin-top: 0.5rem; }
+.post-list {
+  border: 1px solid blue;
+  margin-bottom: 0rem;
+  margin-top: 0.5rem; }
 
-.content-table { border-collapse: collapse; width: 100%; margin-bottom: 1rem; font-size: 1rem; }
+.content-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1rem; }
 
-.content-table td { border: 1px solid black; padding: 0.25rem 1rem 0.25rem 1rem; }
+.content-table td {
+  border: 1px solid black;
+  padding: 0.25rem 1rem 0.25rem 1rem; }
 
 /* Styles for history.html */
-.postlist { list-style-type: none; /* Remove bullets */ padding: 0; /* Remove padding */ margin: 0; /* Remove margins */ }
-
-.postrow { display: flex; }
-
-.postdate { display: flex; width: 80px; align-items: center; font-size: 0.75rem; color: grey; }
-
-.postentry { font-size: 1.5rem; }
-
-#blogpost-page { font-size: 18px; }
-
-#blogpost-page .post-title { font-size: 2.25em; font-weight: 700; }
-
-#blogpost-page .centre { display: block; margin-left: auto; margin-right: auto; margin-top: 2em; margin-bottom: 2em; width: 50%; }
-
-#blogpost-page .centre-wide { display: block; margin-left: auto; margin-right: auto; margin-top: 2em; margin-bottom: 2em; width: 75%; }
-
-#blogpost-page .imageshadow { box-shadow: 10px 10px 5px grey; }
-
-#blogpost-page .article-header { padding-top: 2em; padding-bottom: 1.5em; margin-bottom: 0.5em; }
-
-#blogpost-page .post-thumbnail { width: 100px; height: 100px; float: left; margin-bottom: 0.5em; margin-right: 1.5em; }
-
-#blogpost-page .post-thumbnail img { width: 100px; height: 100px; }
-
-#blogpost-page .post-rubric { float: left; }
-
-#blogpost-page .post-meta { margin-top: 1em; font-size: 0.9em; }
-
-#blogpost-page .description { margin-top: 2em; font-size: 1.5em; font-weight: 300; color: grey; }
-
-#blogpost-page .clear { clear: both; }
-
-#blogpost-page .tags { margin-top: 0.5em; padding-top: 0.5em; padding-bottom: 0.5em; margin-bottom: 0.5em; }
-
-#blogpost-page .tagclass { margin-right: 0.5em; }
-
-#blogpost-page .article-post { margin-bottom: 2em; }
-
-#blogpost-page .article-post p { margin-bottom: 1em; }
-
-#blogpost-page .sidebyside { float: left; }
-
-#blogpost-page .article-post blockquote { margin-left: 4em; margin-right: 4em; font-family: "Times New Roman"; }
-
-#blogpost-page .article-post blockquote p { margin-bottom: 0.5em; }
-
-#blogpost-page .textlist { background-color: lightgrey; font-family: monospace; font-size: 0.75em; list-style-type: none; padding: 1em; margin: 1em; }
-
-#blogpost-page .highlighter-rouge { background-color: lightgrey; padding: 0.75em; margin-bottom: 1em; }
-
-#blogpost-page pre { margin: 0em; }
-
-#blogpost-page code { color: #000000; font-family: monospace; font-size: 1em; }
-
-#projarticle-page { font-size: 16px; /* The following styles are nested inside */ }
-
-#projarticle-page .lecture-num { font-size: 1em; }
-
-#projarticle-page .post-title { font-size: 2.25em; font-weight: 700; }
-
-#projarticle-page .description { margin-top: 1em; font-size: 1.5em; font-weight: 300; color: grey; }
-
-#projarticle-page .article-header { padding-top: 2em; padding-bottom: 1.5em; margin-bottom: 0.5em; }
-
-#projarticle-page h1 { font-size: 1.5em; font-weight: 700; border-bottom: 3px solid black; margin-top: 2em; margin-bottom: 1em; }
-
-#projarticle-page h2 { font-size: 1.25em; font-weight: 700; text-decoration-line: underline; margin-top: 1em; margin-bottom: 1em; }
-
-#projarticle-page h3 { font-size: 1.1em; font-weight: 700; margin-top: 1em; margin-bottom: 0.5em; }
-
-#projarticle-page h4 { font-size: 1em; font-weight: 500; text-decoration-line: underline; margin-top: 1em; margin-bottom: 0.5em; }
-
-#projarticle-page .highlighter-rouge { background-color: lightgrey; padding: 0.5em; margin-bottom: 1em; }
-
-#projarticle-page pre { margin: 0em; }
-
-#projarticle-page code { color: #000000; }
-
-#projarticle-page table { width: 100%; margin-bottom: 1em; }
-
-#projarticle-page th.col1, #projarticle-page th.col2 { width: 15%; }
-
-#projarticle-page th.col3 { width: 70%; /* Not necessary, since only 70% width remains */ }
-
-#projarticle-page table.statetable th.col1 { padding: 0em 3em 0em 3em; }
-
-#projarticle-page table.statetable th.col2 { width: 25%; }
-
-#projarticle-page table.statetable { width: 20em; font-family: serif; font-size: 14pt; text-align: center; }
-
-#projarticle-page table.statetable .bl { border-bottom: 2px solid black; }
-
-#projarticle-page table.statetable .rl { border-right: 2px solid black; }
-
-#projarticle-page img { margin: 2em 0em 2em 0em; }
-
-#projarticle-page table#p44 { text-align: left; }
-
-#projarticle-page table#p44 th.col2 { width: 50%; }
-
-#projarticle-page table#p52 .col1 { width: 15%; text-align: center; }
-
-#projarticle-page table#p52 th.col2 { width: 70%; text-align: left; }
-
-#projarticle-page table#p56 { width: 50%; text-align: center; }
-
-#projarticle-page table#p56 th { width: 25%; }
-
-#projarticle-page table#p57 .col1 { width: 15%; text-align: center; }
-
-#projarticle-page table#p57 th.col2 { width: 70%; text-align: left; }
-
-#projarticle-page table#p58 { width: 50%; text-align: center; }
-
-#projarticle-page table#p58 th { width: 8%; }
-
-#projarticle-page table#p58 .rl { border-right: 2px solid black; font-weight: bold; }
-
-#projarticle-page table#p58 .bl { border-bottom: 2px solid black; }
-
-#projarticle-page table#p59 { width: 50%; text-align: center; }
-
-#projarticle-page table#p59 th { width: 25%; }
-
-#projarticle-page table#p58 .bl { border-bottom: 2px solid black; }
-
-#projarticle-page table#p59a { width: 50%; text-align: center; }
-
-#projarticle-page table#p59a th { width: 25%; }
-
-#projarticle-page table#p61 { width: 50%; text-align: center; }
-
-#projarticle-page table#p61 th { width: 25%; }
-
-/*# sourceMappingURL=styles.css.map */
+.postlist {
+  list-style-type: none;
+  /* Remove bullets */
+  padding: 0;
+  /* Remove padding */
+  margin: 0;
+  /* Remove margins */ }
+
+.postrow {
+  display: flex; }
+
+.postdate {
+  display: flex;
+  width: 80px;
+  align-items: center;
+  font-size: 0.75rem;
+  color: grey; }
+
+.postentry {
+  font-size: 1.5rem; }
+
+#blogpost-page {
+  font-size: 18px; }
+  #blogpost-page .post-title {
+    font-size: 2.25em;
+    font-weight: 700; }
+  #blogpost-page .centre {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 50%; }
+  #blogpost-page .centre-wide {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 75%; }
+  #blogpost-page .imageshadow {
+    box-shadow: 10px 10px 5px grey; }
+  #blogpost-page .article-header {
+    padding-top: 2em;
+    padding-bottom: 1.5em;
+    margin-bottom: 0.5em; }
+  #blogpost-page .post-thumbnail {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-bottom: 0.5em;
+    margin-right: 1.5em; }
+  #blogpost-page .post-thumbnail img {
+    width: 100px;
+    height: 100px; }
+  #blogpost-page .post-rubric {
+    float: left; }
+  #blogpost-page .post-meta {
+    margin-top: 1em;
+    font-size: 0.9em; }
+  #blogpost-page .description {
+    margin-top: 2em;
+    font-size: 1.5em;
+    font-weight: 300;
+    color: grey; }
+  #blogpost-page .clear {
+    clear: both; }
+  #blogpost-page .tags {
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em; }
+  #blogpost-page .tagclass {
+    margin-right: 0.5em; }
+  #blogpost-page .article-post {
+    margin-bottom: 2em; }
+  #blogpost-page .article-post p {
+    margin-bottom: 1em; }
+  #blogpost-page .sidebyside {
+    float: left; }
+  #blogpost-page .article-post blockquote {
+    margin-left: 4em;
+    margin-right: 4em;
+    font-family: "Times New Roman"; }
+  #blogpost-page .article-post blockquote p {
+    margin-bottom: 0.5em; }
+  #blogpost-page .textlist {
+    background-color: lightgrey;
+    font-family: monospace;
+    font-size: 0.75em;
+    list-style-type: none;
+    padding: 1em;
+    margin: 1em; }
+  #blogpost-page .highlighter-rouge {
+    background-color: lightgrey;
+    padding: 0.75em;
+    margin-bottom: 1em; }
+  #blogpost-page pre {
+    margin: 0em; }
+  #blogpost-page code {
+    color: #000000;
+    font-family: monospace;
+    font-size: 1em; }
+
+#projarticle-page {
+  font-size: 16px;
+  /* The following styles are nested inside */ }
+  #projarticle-page .lecture-num {
+    font-size: 1em; }
+  #projarticle-page .post-title {
+    font-size: 2.25em;
+    font-weight: 700; }
+  #projarticle-page .description {
+    margin-top: 1em;
+    font-size: 1.5em;
+    font-weight: 300;
+    color: grey; }
+  #projarticle-page .article-header {
+    padding-top: 2em;
+    padding-bottom: 1.5em;
+    margin-bottom: 0.5em; }
+  #projarticle-page h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    border-bottom: 3px solid black;
+    margin-top: 2em;
+    margin-bottom: 1em; }
+  #projarticle-page h2 {
+    font-size: 1.25em;
+    font-weight: 700;
+    text-decoration-line: underline;
+    margin-top: 1em;
+    margin-bottom: 1em; }
+  #projarticle-page h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-top: 1em;
+    margin-bottom: 0.5em; }
+  #projarticle-page h4 {
+    font-size: 1em;
+    font-weight: 500;
+    text-decoration-line: underline;
+    margin-top: 1em;
+    margin-bottom: 0.5em; }
+  #projarticle-page .highlighter-rouge {
+    background-color: lightgrey;
+    padding: 0.5em;
+    margin-bottom: 1em; }
+  #projarticle-page pre {
+    margin: 0em; }
+  #projarticle-page code {
+    color: #000000; }
+  #projarticle-page table {
+    width: 100%;
+    margin-bottom: 1em; }
+  #projarticle-page th.col1, #projarticle-page th.col2 {
+    width: 15%; }
+  #projarticle-page th.col3 {
+    width: 70%;
+    /* Not necessary, since only 70% width remains */ }
+  #projarticle-page table.statetable th.col1 {
+    padding: 0em 3em 0em 3em; }
+  #projarticle-page table.statetable th.col2 {
+    width: 25%; }
+  #projarticle-page table.statetable {
+    width: 20em;
+    font-family: serif;
+    font-size: 14pt;
+    text-align: center; }
+  #projarticle-page table.statetable .bl {
+    border-bottom: 2px solid black; }
+  #projarticle-page table.statetable .rl {
+    border-right: 2px solid black; }
+  #projarticle-page img {
+    margin: 2em 0em 2em 0em; }
+  #projarticle-page table#p44 {
+    text-align: left; }
+  #projarticle-page table#p44 th.col2 {
+    width: 50%; }
+  #projarticle-page table#p52 .col1 {
+    width: 15%;
+    text-align: center; }
+  #projarticle-page table#p52 th.col2 {
+    width: 70%;
+    text-align: left; }
+  #projarticle-page table#p56 {
+    width: 50%;
+    text-align: center; }
+  #projarticle-page table#p56 th {
+    width: 25%; }
+  #projarticle-page table#p57 .col1 {
+    width: 15%;
+    text-align: center; }
+  #projarticle-page table#p57 th.col2 {
+    width: 70%;
+    text-align: left; }
+  #projarticle-page table#p58 {
+    width: 50%;
+    text-align: center; }
+  #projarticle-page table#p58 th {
+    width: 8%; }
+  #projarticle-page table#p58 .rl {
+    border-right: 2px solid black;
+    font-weight: bold; }
+  #projarticle-page table#p58 .bl {
+    border-bottom: 2px solid black; }
+  #projarticle-page table#p59 {
+    width: 50%;
+    text-align: center; }
+  #projarticle-page table#p59 th {
+    width: 25%; }
+  #projarticle-page table#p58 .bl {
+    border-bottom: 2px solid black; }
+  #projarticle-page table#p59a {
+    width: 50%;
+    text-align: center; }
+  #projarticle-page table#p59a th {
+    width: 25%; }
+  #projarticle-page table#p61 {
+    width: 50%;
+    text-align: center; }
+  #projarticle-page table#p61 th {
+    width: 25%; }
+  #projarticle-page table.prectable {
+    width: 50%;
+    text-align: center;
+    border: 1px; }
+  #projarticle-page table.prectable th {
+    width: 10%; }
+  #projarticle-page table.prectable td.rl {
+    font-weight: bold; }
+  #projarticle-page table#p79 {
+    width: 20%; }
+  #projarticle-page table#p79a1 {
+    width: 20%; }
+  #projarticle-page table#p79a2 {
+    width: 33%; }
