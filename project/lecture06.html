@@ -1,0 +1,456 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>L06 - Operator Precedence Grammars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
+  </head>
+  <body>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-md fixed-top mb-4 navbar-dark bg-dark" >
+    <div class="container">
+        <div class="navbar-brand">Kevin Wilson</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarList" aria-controls="navbarList" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarList">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav navbar-right">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/" >Home</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/history.html" >History</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/project.html" >Project</a>
+                </li>
+            
+            </ul>
+        </div>    <!-- /.navbar-collapse -->
+    </div>  <!-- /.container -->
+</nav>
+
+
+
+      <!-- End Navigation Bar -->
+      <!-- Content -->
+      <div class="container" id="projarticle-page">
+<article>
+     <header class='article-header'>
+        <div>
+          <div class='thumb'>
+            <div class='post-rubric'>
+            <div class='lecture-num'>Lecture 06</div>
+              <div class='post-title'>L06 - Operator Precedence Grammars</div>
+              <div class='post-meta'>
+                <div class='tags'>
+                  
+                </div>
+              </div>   <!-- post-meta -->
+            </div>   <!-- post-rubric -->
+          </div>     <!-- thumb  -->
+            </div>  <!-- container --> 
+         <div class='clear'></div>   
+        <div class='description'>
+          RHS is never empty or contains two non-terminal symbols
+        </div>    <!-- description -->
+      </header>
+
+    <div class='article-post'>
+      <div><!-- 85 -->
+
+<h2 id="operator-precedence-grammars">OPERATOR PRECEDENCE GRAMMARS</h2>
+
+<p>Isolate leftmost main step</p>
+
+<p>Often this ISN’T the HANDLE because some handles are only preparatory.</p>
+
+<p>Terminology:</p>
+
+<p>The leftmost main step is called the Prime Phase.</p>
+
+<!-- 86 -->
+
+<h3 id="prime-phase">Prime Phase</h3>
+
+<p>Consider …</p>
+
+<p>\( t_1 \dots t_n p_1 \dots p_i t_n \dots t_q \)</p>
+
+<p>a sentential form, and \( p_1 \dots p_i \) the PRIME PHASE</p>
+
+<p>At least one \( p_i \) is a terminal and there exists a production:</p>
+
+<p>\( N \rightarrow x_1 \dots x_l \)</p>
+
+<p>with either \(x_i = p_i \)</p>
+
+<p>or</p>
+
+<p>\( x_i \Rightarrow^+ p_i \)</p>
+
+<p>The above represents all preparatory steps.</p>
+
+<!-- 87 -->
+
+<h3 id="some-consequences-for-opg">Some Consequences for OPG</h3>
+
+<p>No RHS of any production may contain two adjacent NON-TERMINALS.</p>
+
+<p>(necessary but not sufficient)</p>
+
+<p>So nowhere in the parse are there two adjacent terminals.</p>
+
+<p>If \( \dots N_x \dots \) is a sentential form and x is part of the prime phase, then so is N.</p>
+
+<!-- 88 -->
+
+<h3 id="need-symbols-with-circles-here">Need symbols with circles here</h3>
+
+<p>Define relations analogous to PG for OPG, this time only between terminals.</p>
+
+<p>1) Define \( \lt \space = \space \gt \) on the terminals such that:</p>
+
+<p>\( t_0 \lt t_1 \dots t_n \lt p_1 = p_2 = \dots = p_i \gt t_k \dots \)</p>
+
+<p>\( p_1 \dots p_i \) is the PRIME PHRASE.</p>
+
+<p>2) Given a grammar G, form the OPG table (or precedence functions)</p>
+
+<!-- 89 -->
+
+<h3 id="definition-of-">Definition of =</h3>
+
+<p>\( x, y \in T \)</p>
+
+<p>\( \eta, \mu \in N \)</p>
+
+<p>\( X = Y \Leftrightarrow \space def \space \exists \space p \in P \) such that</p>
+
+<p>\( p = \eta \rightarrow \dots x y \dots \)</p>
+
+<p>\( p = \mu \rightarrow \dots x \mu y \dots \)</p>
+
+<p>Note: Non-terminals are transparent</p>
+
+<!-- 90 -->
+
+<h3 id="definition-of--1">Definition of &lt;</h3>
+
+<p>\( x, y \in T \)</p>
+
+<p>\( \lambda, \eta_1, \mu \in N \)</p>
+
+<p>\( X \lt Y \Leftrightarrow \space def \space \exists \space p \in P \) such that</p>
+
+<p>\( p = \eta \rightarrow \dots x y \dots \)</p>
+
+<p>\( p = \mu \rightarrow \dots x \mu y \dots \)</p>
+
+<p>Define a relation FIRSTTERM giving the possible terminals starting a production IGNORING non-terminals.</p>
+
+<!-- 91 -->
+
+<h3 id="definition-of--2">Definition of &gt;</h3>
+
+<p>\( x, y \in T \)</p>
+
+<p>\( \lambda, \eta_1, \mu \in N \)</p>
+
+<p>\( X \gt Y \Leftrightarrow \space def \space \exists \space p \in P \) such that</p>
+
+<p>\( p = \eta \rightarrow \dots /mu y \dots \)</p>
+
+<p>\( /mu \rightarrow^+ \dots x \lambda \) or</p>
+
+<p>\( /mu \rightarrow^+ \dots x \)</p>
+
+<p>Define an analogous relation LASTTERM of terminals that finish a production IGNORING non-terminals.</p>
+
+<!-- 92 -->
+
+<h3 id="example">Example</h3>
+
+<p>\( E \rightarrow T | E + T \)</p>
+
+<p>\( T \rightarrow F | T * F \)</p>
+
+<p>\( F \rightarrow I | ( E ) \)</p>
+
+<p>To form table we inspect pairs of adjacent non-terminals:</p>
+
+<p>*F, +T, (E</p>
+
+<p>for these need FIRSTTERM+</p>
+
+<p>T*, E+, E)</p>
+
+<p>for these need LASTTERM+</p>
+
+<p>\( F^+ (F) = \{ \quad I , ( \quad \}  \)</p>
+
+<p>\( F^+ (T) = \{ \quad *, I , ( \quad \}  \)</p>
+
+<p>\( F^+ (E) = \{ \quad +, *, I , ( \quad \}  \)</p>
+
+<p>\( L^+ (T) = \{ \quad *, I , ) \quad \}  \)</p>
+
+<p>\( L^+ (E) = \{ \quad +, *, I \quad \}  \)</p>
+
+<p>now we can define the relation on the terminal set</p>
+
+<p>\( \{ \quad I, *, +, (, ) \quad \} \)</p>
+
+<!-- 93 -->
+
+<p>recall \( x * y \) with productions:</p>
+
+<p>\( p \rightarrow \dots x y \dots \)</p>
+
+<p>\( p \rightarrow \dots x \eta y \dots \)     where    \( ( \mu \in N ) \)</p>
+
+<p>so we set     ( = ) and that’s the only case.</p>
+
+<p>Next we set:</p>
+
+<p>\( * &lt; F^+(F) \quad  L^+(T) &gt; * \)</p>
+
+<p>\( + &lt; F^+(T) \quad  L^+(E) &gt; + \)</p>
+
+<p>\( ( &lt; F^+(E) \quad  L^+(E) &gt; ) \)</p>
+
+<p>giving</p>
+
+<table id="p93" class="prectable" border="1">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">I</th>
+      <th class="bl">)</th>
+      <th class="bl">*</th>
+      <th class="bl">+</th>
+      <th class="bl">(</th>
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">I </td>
+    <td> </td>
+    <td>&gt; </td>
+    <td>&gt; </td>
+    <td>&gt; </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">) </td>
+    <td> </td>
+    <td>&gt; </td>
+    <td>&gt; </td>
+    <td>&gt; </td>
+    <td> </td>
+</tr>
+<tr>
+    <td class="rl">* </td>
+    <td>&lt; </td>
+    <td>&gt; </td>
+    <td>&gt; </td>
+    <td>&gt; </td>
+    <td>&lt; </td>
+</tr>
+<tr>
+    <td class="rl">+ </td>
+    <td>&lt; </td>
+    <td>&gt; </td>
+    <td>&lt; </td>
+    <td>&gt; </td>
+    <td>&lt; </td>
+</tr>
+<tr>
+    <td class="rl">( </td>
+    <td>&lt; </td>
+    <td>= </td>
+    <td>&lt; </td>
+    <td>&lt; </td>
+    <td>&lt; </td>
+</tr>
+
+
+</tbody>
+</table>
+
+<p>Compare with P.G. table!</p>
+
+<!-- 94 -->
+
+<h3 id="exercise">Exercise</h3>
+
+<p>Take grammar on page 75 and:</p>
+
+<ol>
+  <li>Check conditions</li>
+  <li>Form O.P.G. table by defining \( F^+ \) and \( L^+ \) sets.</li>
+</ol>
+
+<table id="p94" class="prectable" border="1">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">~ </th>
+      <th class="bl">( </th>
+      <th class="bl">) </th>
+      <th class="bl">b </th>
+
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">~ </td>
+    <td>&lt; </td>
+    <td>&lt; </td>
+    <td> </td>
+    <td>&lt; </td>
+
+</tr>
+<tr>
+    <td class="rl">( </td>
+    <td>&lt; </td>
+    <td>&lt; </td>
+    <td>= </td>
+    <td>&lt; </td>
+
+</tr>
+<tr>
+    <td class="rl">) </td>
+    <td>&gt; </td>
+    <td> </td>
+    <td>&gt; </td>
+    <td> </td>
+
+</tr>
+<tr>
+    <td class="rl">b </td>
+    <td>&gt; </td>
+    <td> </td>
+    <td>&gt; </td>
+    <td> </td>
+
+</tr>
+
+</tbody>
+</table>
+
+<!-- 95 -->
+
+<p>Many grammars, particularly expression grammars, have a special form:</p>
+
+<p>(c.f. GEDANKEN for example)</p>
+
+<p>\( E_1 \rightarrow E_2 | E_1 O_1 E_2 \)</p>
+
+<p>\( E_2 \rightarrow E_3 | E_2 O_2 E_3 \)</p>
+
+<p>\( : \)</p>
+
+<p>\( E_n \rightarrow x | E_n O_n X \)</p>
+
+<p>\( X \rightarrow primary expressions</p>
+
+<p>Table</p>
+
+<table id="p94" class="prectable" border="1">
+ <thead>
+    <tr>
+      <th class="bl rl"></th>
+      <th class="bl">O_1 </th>
+      <th class="bl">O_2 </th>
+      <th class="bl">O_3 </th>
+      <th class="bl">O_4 </th>
+      <th class="bl">...</th>
+      <th class="bl">O_n </th>
+    </tr>
+  </thead>
+<tbody>
+<tr>
+    <td class="rl">O<sub>1</sub> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+        <td> </td>
+</tr>
+<tr>
+    <td class="rl">O<sub>2</sub> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+        <td> </td>
+</tr>
+<tr>
+    <td class="rl">O<sub>3</sub> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+        <td> </td>
+</tr>
+<tr>
+    <td class="rl">O<sub>4</sub> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+        <td> </td>
+</tr>
+<tr>
+    <td class="rl">: </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+        <td> </td>
+</tr>
+<tr>
+    <td class="td"> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+        <td> </td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+    </div>
+</article>
+</div>
+
+      <!-- End Content -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>
