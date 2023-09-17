@@ -36,6 +36,10 @@
                     <a class="nav-link" href="/project.html" >Project</a>
                 </li>
             
+                <li class="nav-item">
+                    <a class="nav-link" href="/exampapers.html" >Exam Papers</a>
+                </li>
+            
             </ul>
         </div>    <!-- /.navbar-collapse -->
     </div>  <!-- /.container -->
@@ -466,6 +470,307 @@
 
 <!-- 97 -->
 
+<h3 id="example-1">Example</h3>
+
+<p>( When \( f(op) = g(op) + 1 \) )</p>
+
+<p>Only need one prec function to find the prime-phrase.</p>
+
+<p>How to stack terminals?</p>
+
+<ol>
+  <li>
+    <p>Explicit stack in program</p>
+  </li>
+  <li>
+    <p>Implicit use of R-T-Stack in recursive language (BCPL etc)</p>
+  </li>
+</ol>
+
+<pre>
+
+let prec (op) = valof switchon op into
+  {
+    case '&vdash;' :
+    case '&dashv;' : resultis  0
+    
+    case '+' :
+    case '-' : resultis  1
+    
+    case '*' :
+    case '/' : resultis  2
+  }
+    
+</pre>
+
+<!-- 98 -->
+
+<pre>
+
+let Node (type, A, B) = valof
+  {
+    let n = newvec(2)
+    !n := type
+    n!1 := A
+    n!2 := B
+    resultis n
+  }
+  
+let leaf(L) = valof
+  {
+    let n = newvec(1)
+    !n := s.char
+    n!1 := L
+    resultis n
+  }
+  
+let lex() = valof
+  {
+    {
+      let ch = !lch
+      lch +: 1
+      switchon ch into
+        {
+          case '*L' : ch := '&dashv;'
+          case '*E' : 
+          case 'A'...'Z' :
+          case '+' :
+          case '*' :
+          case '-' :
+          case '/' : Symb := ch
+                     resultis symb
+          default : loop
+        }
+    } repeat
+  }
+    
+</pre>
+
+<!-- 99 -->
+
+<pre>
+
+let exp(precd) = valof
+  {
+    let n = leaf( lex() )           $
+    lex()
+    {
+      let op = syms
+      and p = prec( op )
+      if p &lt;= precd resultis n
+      n := Node( op, n, exp(p))
+    } repeat
+  }
+</pre>
+
+<p>Note: that each invocation of exp contains an operator (stacking them until required).</p>
+
+<p>Note: symb is a static.</p>
+
+<p>Note: Errors??</p>
+
+<h3 id="exercise-1">Exercise:</h3>
+
+<p>Take</p>
+<pre>
+&vdash; A + B * C &dashv; 
+and 
+&vdash; A * B + C &dashv;
+
+</pre>
+<p>and track</p>
+<pre> 
+{ lex()   exp(prec(symb)) }
+
+</pre>
+<p>Sketch trees.</p>
+
+<!-- 100 -->
+
+<p>In realistic cases we write:</p>
+
+<p>let n = parseprimary() at $ on page 99, roughly:</p>
+
+<pre>
+let parseprimary() = valof
+    w = nil
+    switchon symb into
+      {
+        case s.number: resultis node1(symb, value )
+        case s.iden : resultis iden(false)
+        case s.lftpow : lex()
+                        w := exp( prec '&vdash;')
+                        checkfor(s.rgtpow )
+                        resultis w
+                        
+           :
+           :
+      }
+</pre>
+
+<p>making the identifier function, iden, take a boolean argument is a simple way of telling it whether the identifer is in a declaration (e.g. int x; ) or application position (e.g. x := 3 ) and so whether to build a new descriptor for the identifier.</p>
+
+<!-- 101 -->
+
+<p>For completeness, a pretty-printer for expressions:</p>
+
+<pre>
+let pp(tree) be
+switchon type of tree into
+  {
+    case s.plus :
+    case s.minus :
+    case s.times :
+    case s.divide : pp( left of tree )
+                    pn( type of tree )
+                    pp( right of tree )
+                    return
+    case s.number : outno( value of tree )
+                    return
+    case s.iden :   outs( str of value of tree )
+                    return
+                    
+        :
+        :
+        
+    // also expressions
+    
+    case s.if  :    pn( s.if )
+                    pp( expF of tree )
+                    pn( s.then )
+                    pp( stat1F of tree )
+                    pn( s.else )
+                    pp( stat2F of tree )
+                    return
+                    
+        :
+  }
+  
+</pre>
+
+<!-- 102 -->
+
+<pre>
+let pn(tok) be outs( px( tok) )
+
+let px(tok) = valof
+  switchon tok into 
+  {
+    case s.plus :   resultis "+ "
+    case s.minus :  resultis "- "
+      :
+      
+    case s.if :     resultis "if "
+      :
+      
+    case s.assign : resultis ":= "
+      :
+      
+    default :       resultis "??? "
+  }
+  
+</pre>
+
+<!-- 103 -->
+
+<h2 id="parse-tree-design">PARSE TREE DESIGN</h2>
+
+<ol>
+  <li>
+    <p>SHAPE ?<br />
+How many fields and what for?  e.g. a list of declarations in one node, or a list of nodes?</p>
+  </li>
+  <li>
+    <p>ACCESS ?<br />
+Suitable SELECTORS with sensible names for accessing sub-trees.</p>
+  </li>
+  <li>
+    <p>CREATE ?<br />
+Node1, Node … NodeN as before?  Or what?</p>
+  </li>
+  <li>
+    <p>DELETE ?<br />
+Do we ever delete structures?</p>
+  </li>
+</ol>
+
+<!-- 104 -->
+
+<h2 id="shape-and-access">SHAPE AND ACCESS</h2>
+
+<p>Use lots of mnemonics for field names in the parse tree.</p>
+
+<p>In get_file you can do something like:</p>
+<pre>
+l0 = selector 18: 0:0
+r0 = selector 18:18:0
+l1 = selector 18: 0:1
+r1 = selector 18:18:1
+l2 = selector 18: 0:2
+r2 = selector 18:18:2
+
+</pre>
+<p>and then</p>
+<pre>
+typeF = l0
+testF = r0
+thenF = l1
+elseF = r1       // for if..then..else
+labF = r0        // for goto
+leftF = r0
+rightF = l1      // for binary expression
+
+</pre>
+<p>Note the duplication</p>
+
+<!-- 105 -->
+
+<h2 id="shape">SHAPE</h2>
+
+<p>Draw a series of boxes and from this construct the suitable selectors.</p>
+
+<p>if..then..else</p>
+
+<!-- Diagram here -->
+<pre>
+T = typeF = l0
+&#x3B8; = ContF = r0
+L = LineF = l1
+1 = TestF = ...
+2 = ThenF = ...
+3 = ElseF = ...
+
+</pre>
+
+<!-- 106 -->
+
+<p>Another possibility for CREATION:</p>
+
+<pre>
+let Node( A, B, ..., Z ) = valof
+  {
+    let N = numbargs()
+    let V = newvec(N)
+    switchon N into 
+    {
+      case 26 : v!26 := Z
+      case 25 : v!25 := Y
+        :
+      case 2 : v!2 := B
+      case 1 : v!1 := A
+      default : v!0 := N
+    }
+    if DEBUGNODE then
+    {
+      write( debstr, "*C*L Node:N(", N )
+      for I = 1 to N-1 do
+        write( debstr, ":S, ", px(v!I)
+        unless n = 0
+        write(debtxt, ":S)", px(v!N))
+    }
+  }
+  
+</pre>
 </div>
     </div>
 </article>

@@ -98,6 +98,21 @@ h3.category_header {
 .postentry {
   font-size: 1.5rem; }
 
+/* Styles for exampapers.html */
+.examlist {
+  list-style-type: none;
+  /* Remove bullets */
+  padding: 0;
+  /* Remove padding */
+  margin: 0;
+  /* Remove margins */ }
+
+.examyear {
+  background-color: light-grey;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid black; }
+
 #blogpost-page {
   font-size: 18px; }
   #blogpost-page .post-title {

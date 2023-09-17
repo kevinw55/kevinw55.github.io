@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>L07 - Run-Time Structures</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
+  </head>
+  <body>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-md fixed-top mb-4 navbar-dark bg-dark" >
+    <div class="container">
+        <div class="navbar-brand">Kevin Wilson</div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarList" aria-controls="navbarList" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarList">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav navbar-right">
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/" >Home</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/history.html" >History</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/project.html" >Project</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="/exampapers.html" >Exam Papers</a>
+                </li>
+            
+            </ul>
+        </div>    <!-- /.navbar-collapse -->
+    </div>  <!-- /.container -->
+</nav>
+
+
+
+      <!-- End Navigation Bar -->
+      <!-- Content -->
+      <div class="container" id="projarticle-page">
+<article>
+     <header class='article-header'>
+        <div>
+          <div class='thumb'>
+            <div class='post-rubric'>
+            <div class='lecture-num'>Lecture 07</div>
+              <div class='post-title'>L07 - Run-Time Structures</div>
+              <div class='post-meta'>
+                <div class='tags'>
+                  
+                </div>
+              </div>   <!-- post-meta -->
+            </div>   <!-- post-rubric -->
+          </div>     <!-- thumb  -->
+            </div>  <!-- container --> 
+         <div class='clear'></div>   
+        <div class='description'>
+          Each executable object must be represented
+        </div>    <!-- description -->
+      </header>
+
+    <div class='article-post'>
+      <div><!-- 107 -->
+
+<h2 id="observations">Observations</h2>
+
+<ol>
+  <li>
+    <p>The structure is clearly highly dynamic.</p>
+  </li>
+  <li>
+    <p>Each executable object must be represented.</p>
+  </li>
+  <li>
+    <p>These representations must be related in some (probably amazingly complex!) way.</p>
+  </li>
+</ol>
+
+<p>What structures are represented?</p>
+
+<ul>
+  <li>
+    <p>Procedures?</p>
+  </li>
+  <li>
+    <p>Functions?</p>
+  </li>
+  <li>
+    <p>Blocks?</p>
+  </li>
+  <li>
+    <p>Labels?</p>
+  </li>
+</ul>
+
+<p>And what are the representations?</p>
+
+<p>Code + ? ? ?</p>
+
+<!-- 108 -->
+
+<h1 id="activations">ACTIVATIONS</h1>
+
+<h4 id="first-stab">First Stab</h4>
+<p>Represent each object by it’s executable code.</p>
+
+<p>But what about values, that the code manipuates?  Like:</p>
+
+<ul>
+  <li>
+    <p>Locals</p>
+  </li>
+  <li>
+    <p>Parameters</p>
+  </li>
+  <li>
+    <p>Non-locks</p>
+  </li>
+  <li>
+    <p>Temporaries</p>
+  </li>
+</ul>
+
+<p>And what about its relationship to the the “Bigger Scheme”?  For example:  What to do when the object finishes it’s execution.</p>
+
+<h4 id="second-stab">Second stab</h4>
+<p>Represent each object by its executable code plus a data-structure which contains all the information listed above.</p>
+
+<p>Terminology
+Call this structure the DECLARATION RECORD.  Call a particular invocation of it an ACTIVATION RECORD.</p>
+
+<!-- 109 -->
+
+<h2 id="declaration-records">DECLARATION RECORDS</h2>
+
+<p>Ought to contain:</p>
+
+<h4 id="control-environment">Control Environment</h4>
+
+<p>A place where we can record the relationship of this object’s code to other object’s code.</p>
+
+<h4 id="data-environment">Data Environment</h4>
+
+<p>A place to find values of objects not defined here.</p>
+
+<h4 id="local-environment">Local Environment</h4>
+
+<p>A place to find values of objects defined here.</p>
+
+<h4 id="expresssion-environment">Expresssion Environment</h4>
+
+<p>A place to find values computed already during the evaluation of expressions.</p>
+
+<p>Presumably the control environment consists of two parts - since each executable does - namely:</p>
+
+<p>A pointer to some code to execute, and a data structure (declaration or activation record) to evaluate it in conjunction with.</p>
+
+<!-- 110 -->
+
+<h3 id="comments">Comments</h3>
+
+<p>It appears that the control environment is just another executable object.</p>
+
+<p>Since the non-local data is presumably local to some executable object then the (non-local) data environment is also (the structure of) an executable object.</p>
+
+<p>One executable object is current at each moment - the code is indicated  by the program counter (big surprise!) and also we need to indicate the current structure that its being evaluated with.</p>
+
+<p>So abstractly, we have the following sort of situation:</p>
+
+<!-- diagram -->
+
+<!-- 111 -->
+
+<h3 id="further-observation">Further Observation</h3>
+
+<p>As well as running the code which has been written we will have to add code to maintain the integrity of the activation record structure.</p>
+
+<p>This code will do things like preparing and moving arguments, building new activation records, recording the values of the control and data environments.</p>
+
+<h4 id="for-example">For example:</h4>
+<p>Calling a procedure involves more than simply jumping to it’s code pointer.</p>
+
+<p>Executing a procedure involves more than simply running it’s code.</p>
+
+<h4 id="roughly">Roughly:</h4>
+
+<table>
+<tr><td><b>Calling</b></td><td><b>Executing</b></td></tr>
+
+<tr><td>Prelude</td><td>Prologue</td></tr>
+
+<tr><td>Jump</td><td>Body</td></tr>
+
+<tr><td>Postlude</td><td>Epilogue</td></tr>
+</table>
+
+<!-- 112 -->
+
+<h2 id="fortran">FORTRAN</h2>
+
+<!-- Diagram -->
+
+<p>Since Fortran is not recursive we only ever have one Activation Record (AR) for each procedure.  Control environment is specified simply by a return code pointer.</p>
+
+<p>Since communication between procedures is done via REF parameters and a common data area, we don’t have any data environment, so DR = AR in Fortran and AR looks like this:</p>
+
+<!-- Diagram -->
+
+<!-- 113 -->
+
+<h2 id="algol">ALGOL</h2>
+
+<p>Allows recursive invocation.  Same process description (DR) for many activations (AR).  Activations share code but not data.</p>
+
+<p>Since DR != AR, ARs must be explicitly built by the code (Prologue) when required.  Also recovered when  dead (Epilogue).</p>
+
+<p>We can use a stack of ARs since the last activated is the first to finish, and other restrictions ensure all data access is made down the stack.</p>
+
+<!-- Diagram -->
+
+<!-- 114 -->
+
+</div>
+    </div>
+</article>
+</div>
+
+      <!-- End Content -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>
